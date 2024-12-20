@@ -21,6 +21,7 @@ chrome-user-data
 .idea
 *.iml
 .vscode
+!.vscode/launch.json
 *.swp
 *.swo
 
