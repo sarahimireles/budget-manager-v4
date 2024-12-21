@@ -1,4 +1,5 @@
 .DS_STORE
+firebaseConfig.ts
 node_modules
 scripts/flow/*/.flowconfig
 .flowconfig

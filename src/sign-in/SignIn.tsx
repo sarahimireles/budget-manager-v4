@@ -17,6 +17,8 @@ import ForgotPassword from "./ForgotPassword"
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons"
 import AppTheme from "../shared-theme/AppTheme"
 import ColorModeSelect from "../shared-theme/ColorModeSelect"
+import { signInWithEmailAndPassword } from "firebase/auth"
+import { auth } from "../../firebaseConfig" // Asegúrate de que esta ruta sea correcta
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -75,16 +77,28 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     setOpen(false)
   }
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    if (emailError || passwordError) {
-      event.preventDefault()
-      return
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault()
+
+    const email = (document.getElementById("email") as HTMLInputElement).value
+    const password = (document.getElementById("password") as HTMLInputElement).value
+
+    try {
+      const userCredential = await signInWithEmailAndPassword(auth, email, password)
+      console.log("User signed in:", userCredential.user)
+    } catch (error: unknown) {
+      console.error("Error signing in:", error)
+      if ((error as { code: string }).code === "auth/user-not-found") {
+        setEmailError(true)
+        setEmailErrorMessage("User not found. Please check your email.")
+      } else if ((error as { code: string }).code === "auth/wrong-password") {
+        setPasswordError(true)
+        setPasswordErrorMessage("Incorrect password. Please try again.")
+      } else {
+        setEmailError(true)
+        setEmailErrorMessage("Something went wrong. Please try again later.")
+      }
     }
-    const data = new FormData(event.currentTarget)
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    })
   }
 
   const validateInputs = () => {
