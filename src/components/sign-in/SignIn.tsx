@@ -11,7 +11,7 @@ import MuiCard from "@mui/material/Card"
 import { styled } from "@mui/material/styles"
 import ForgotPassword from "./ForgotPassword"
 import CustomSnackbar from "../common/CustomSnackbar"
-import { useSnackbar } from "../../hooks/common/useSnackbar"
+import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
 

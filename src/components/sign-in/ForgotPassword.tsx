@@ -9,7 +9,7 @@ import OutlinedInput from "@mui/material/OutlinedInput"
 import { sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
 import CustomSnackbar from "../common/CustomSnackbar"
-import { useSnackbar } from "../../hooks/common/useSnackbar"
+import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 
 interface ForgotPasswordProps {
   open: boolean;
