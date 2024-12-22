@@ -7,9 +7,9 @@ import DialogContentText from "@mui/material/DialogContentText"
 import DialogTitle from "@mui/material/DialogTitle"
 import OutlinedInput from "@mui/material/OutlinedInput"
 import { sendPasswordResetEmail } from "firebase/auth"
-import { auth } from "../../firebaseConfig"
-import CustomSnackbar from "../components/common/CustomSnackbar"
-import { useSnackbar } from "../hooks/common/useSnackbar"
+import { auth } from "../../../firebaseConfig"
+import CustomSnackbar from "../common/CustomSnackbar"
+import { useSnackbar } from "../../hooks/common/useSnackbar"
 
 interface ForgotPasswordProps {
   open: boolean;

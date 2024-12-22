@@ -4,11 +4,11 @@ import "./styles/global.scss"
 import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
 import CssBaseline from "@mui/material/CssBaseline"
-import SignIn from "./sign-in/SignIn"
+import SignIn from "./components/sign-in/SignIn"
 import { auth } from "../firebaseConfig"
 import Button from "@mui/material/Button"
-import AppTheme from "./shared-theme/AppTheme"
-import ColorModeSelect from "./shared-theme/ColorModeSelect"
+import AppTheme from "./components/shared-theme/AppTheme"
+import ColorModeSelect from "./components/shared-theme/ColorModeSelect"
 
 const App = (props: { disableCustomTheme?: boolean }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)

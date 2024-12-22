@@ -10,10 +10,10 @@ import Stack from "@mui/material/Stack"
 import MuiCard from "@mui/material/Card"
 import { styled } from "@mui/material/styles"
 import ForgotPassword from "./ForgotPassword"
-import CustomSnackbar from "../components/common/CustomSnackbar"
-import { useSnackbar } from "../hooks/common/useSnackbar"
+import CustomSnackbar from "../common/CustomSnackbar"
+import { useSnackbar } from "../../hooks/common/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../../firebaseConfig"
+import { auth } from "../../../firebaseConfig"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
