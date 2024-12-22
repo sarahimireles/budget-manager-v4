@@ -15,6 +15,7 @@ import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
 import { TEXTS } from "../../types/common"
+import { isValidEmail } from "../../utils/functions"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -95,7 +96,7 @@ export default function SignIn() {
 
     let isValid = true
 
-    if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
+    if (!email.value || !isValidEmail(email.value)) {
       setEmailError(true)
       setEmailErrorMessage(TEXTS.VALIDATIONS.INVALID_EMAIL)
       isValid = false

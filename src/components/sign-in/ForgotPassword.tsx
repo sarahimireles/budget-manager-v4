@@ -11,6 +11,7 @@ import { auth } from "../../../firebaseConfig"
 import CustomSnackbar from "../common/CustomSnackbar"
 import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { TEXTS } from "../../types/common"
+import { isValidEmail } from "../../utils/functions"
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -24,14 +25,18 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
   const handlePasswordReset = async (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault()
 
-    try {
-      const email: string = emailRef.current?.value ?? ""
-      await sendPasswordResetEmail(auth, email)
+    const email: string = emailRef.current?.value ?? ""
 
+    if (!isValidEmail(email)) {
+      showSnackbar(TEXTS.VALIDATIONS.INVALID_EMAIL, "error")
+      return // Detener el envío si el correo es inválido
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, email)
       showSnackbar(TEXTS.SNACKBAR.EMAIL_SENT_SUCCESS, "success")
     } catch (error: unknown) {
-      console.error("Error enviando correo para cambiar el passowrd:", error)
-
+      console.error("Error enviando correo para cambiar el password:", error)
       showSnackbar(TEXTS.SNACKBAR.GENERAL_ERROR, "error")
     } finally {
       handleClose()
@@ -58,7 +63,6 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           sx: { backgroundImage: "none" },
         }}
       >
-
         <DialogTitle>{TEXTS.FORM.FORGOT_PASSWORD_TITLE}</DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}
@@ -79,7 +83,6 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
             inputRef={emailRef}
           />
         </DialogContent>
-
         <DialogActions sx={{ pb: 3, px: 3 }}>
           <Button onClick={handleClose}>{TEXTS.DIALOG.CANCEL}</Button>
           <Button variant="contained" onClick={handlePasswordReset}>
