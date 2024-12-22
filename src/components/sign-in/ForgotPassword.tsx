@@ -12,6 +12,7 @@ import CustomSnackbar from "../common/CustomSnackbar"
 import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { TEXTS } from "../../types/common"
 import { isValidEmail } from "../../utils/functions"
+import { FormEvent, useRef } from "react"
 
 interface ForgotPasswordProps {
   open: boolean;
@@ -19,7 +20,7 @@ interface ForgotPasswordProps {
 }
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
-  const emailRef = React.useRef<HTMLInputElement>(null)
+  const emailRef = useRef<HTMLInputElement>(null)
   const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
 
   const handlePasswordReset = async (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -56,7 +57,7 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
         onClose={handleClose}
         PaperProps={{
           component: "form",
-          onSubmit: (event: React.FormEvent<HTMLFormElement>) => {
+          onSubmit: (event: FormEvent<HTMLFormElement>) => {
             event.preventDefault()
             handleClose()
           },

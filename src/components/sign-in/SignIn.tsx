@@ -1,4 +1,4 @@
-import * as React from "react"
+import React, { FormEvent, useState } from "react"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
 import FormLabel from "@mui/material/FormLabel"
@@ -60,11 +60,11 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }))
 
 export default function SignIn() {
-  const [emailError, setEmailError] = React.useState(false)
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState("")
-  const [passwordError, setPasswordError] = React.useState(false)
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("")
-  const [open, setOpen] = React.useState(false)
+  const [emailError, setEmailError] = useState(false)
+  const [emailErrorMessage, setEmailErrorMessage] = useState("")
+  const [passwordError, setPasswordError] = useState(false)
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
+  const [open, setOpen] = useState(false)
   const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
 
   const handleClickOpen = () => {
@@ -75,7 +75,7 @@ export default function SignIn() {
     setOpen(false)
   }
 
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
 
     const email = (document.getElementById("email") as HTMLInputElement).value

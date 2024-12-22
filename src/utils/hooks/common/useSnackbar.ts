@@ -1,4 +1,4 @@
-import React from "react"
+import { useState } from "react"
 
 interface SnackbarState {
   open: boolean;
@@ -7,7 +7,7 @@ interface SnackbarState {
 }
 
 export const useSnackbar = () => {
-  const [snackbar, setSnackbar] = React.useState<SnackbarState>({
+  const [snackbar, setSnackbar] = useState<SnackbarState>({
     open: false,
     message: "",
     severity: "info",

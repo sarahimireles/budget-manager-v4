@@ -9,7 +9,7 @@ interface SnackbarProps {
   onClose: () => void;
 }
 
-const CustomSnackbar: React.FC<SnackbarProps> = ({ open, message, severity, onClose }) => {
+const CustomSnackbar = ({ open, message, severity, onClose }: SnackbarProps) => {
   return (
     <Snackbar
       open={open}
