@@ -1,13 +1,7 @@
 import React from "react"
 import Snackbar from "@mui/material/Snackbar"
 import Alert from "@mui/material/Alert"
-
-interface SnackbarProps {
-  open: boolean;
-  message: string;
-  severity: "error" | "warning" | "info" | "success";
-  onClose: () => void;
-}
+import { SnackbarProps } from "../../types/snackbar"
 
 const CustomSnackbar = ({ open, message, severity, onClose }: SnackbarProps) => {
   return (

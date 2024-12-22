@@ -13,11 +13,7 @@ import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { TEXTS } from "../../types/common"
 import { isValidEmail } from "../../utils/functions"
 import { FormEvent, useRef } from "react"
-
-interface ForgotPasswordProps {
-  open: boolean;
-  handleClose: () => void;
-}
+import { ForgotPasswordProps } from "../../types/sign-in"
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
   const emailRef = useRef<HTMLInputElement>(null)
