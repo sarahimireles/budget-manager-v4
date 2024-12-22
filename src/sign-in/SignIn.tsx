@@ -1,10 +1,6 @@
 import * as React from "react"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
-import Checkbox from "@mui/material/Checkbox"
-import CssBaseline from "@mui/material/CssBaseline"
-import FormControlLabel from "@mui/material/FormControlLabel"
-import Divider from "@mui/material/Divider"
 import FormLabel from "@mui/material/FormLabel"
 import FormControl from "@mui/material/FormControl"
 import Link from "@mui/material/Link"
@@ -14,11 +10,10 @@ import Stack from "@mui/material/Stack"
 import MuiCard from "@mui/material/Card"
 import { styled } from "@mui/material/styles"
 import ForgotPassword from "./ForgotPassword"
-import { GoogleIcon, FacebookIcon, SitemarkIcon } from "./CustomIcons"
-import AppTheme from "../shared-theme/AppTheme"
-import ColorModeSelect from "../shared-theme/ColorModeSelect"
+import CustomSnackbar from "../components/common/CustomSnackbar"
+import { useSnackbar } from "../hooks/common/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../../firebaseConfig" // Asegúrate de que esta ruta sea correcta
+import { auth } from "../../firebaseConfig"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -68,6 +63,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
   const [passwordError, setPasswordError] = React.useState(false)
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("")
   const [open, setOpen] = React.useState(false)
+  const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
 
   const handleClickOpen = () => {
     setOpen(true)
@@ -84,24 +80,15 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
     const password = (document.getElementById("password") as HTMLInputElement).value
 
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password)
-      console.log("User signed in:", userCredential.user)
+      await signInWithEmailAndPassword(auth, email, password)
     } catch (error: unknown) {
-      console.error("Error signing in:", error)
-      if ((error as { code: string }).code === "auth/user-not-found") {
-        setEmailError(true)
-        setEmailErrorMessage("User not found. Please check your email.")
-      } else if ((error as { code: string }).code === "auth/wrong-password") {
-        setPasswordError(true)
-        setPasswordErrorMessage("Incorrect password. Please try again.")
-      } else {
-        setEmailError(true)
-        setEmailErrorMessage("Something went wrong. Please try again later.")
-      }
+      console.error("Error en el sign-in:", error)
+
+      showSnackbar("Oopsy, algo salio mal. Intenta de nuevo.", "error")
     }
   }
 
-  const validateInputs = () => {
+  const validateInputs = (event: React.MouseEvent<HTMLButtonElement>) => {
     const email = document.getElementById("email") as HTMLInputElement
     const password = document.getElementById("password") as HTMLInputElement
 
@@ -109,38 +96,45 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true)
-      setEmailErrorMessage("Please enter a valid email address.")
+      setEmailErrorMessage("Ingrese un correo valido por favor.")
       isValid = false
     } else {
       setEmailError(false)
       setEmailErrorMessage("")
     }
 
-    if (!password.value || password.value.length < 6) {
+    if (!password.value || password.value.length < 1) {
       setPasswordError(true)
-      setPasswordErrorMessage("Password must be at least 6 characters long.")
+      setPasswordErrorMessage("El password debe contener al menos 1 caracter.")
       isValid = false
     } else {
       setPasswordError(false)
       setPasswordErrorMessage("")
     }
 
+    if (!isValid) {
+      event.preventDefault()
+    }
+
     return isValid
   }
 
   return (
-    <AppTheme {...props}>
-      <CssBaseline enableColorScheme />
+    <>
+      <CustomSnackbar
+        open={snackbar.open}
+        message={snackbar.message}
+        severity={snackbar.severity}
+        onClose={closeSnackbar}
+      />
       <SignInContainer direction="column" justifyContent="space-between">
-        <ColorModeSelect sx={{ position: "fixed", top: "1rem", right: "1rem" }} />
         <Card variant="outlined">
-          <SitemarkIcon />
           <Typography
             component="h1"
             variant="h4"
             sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
-            Sign in
+            Ingresar
           </Typography>
           <Box
             component="form"
@@ -154,7 +148,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Email</FormLabel>
+              <FormLabel htmlFor="email">Correo electronico</FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
@@ -187,10 +181,6 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
                 color={passwordError ? "error" : "primary"}
               />
             </FormControl>
-            <FormControlLabel
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <ForgotPassword open={open} handleClose={handleClose} />
             <Button
               type="submit"
@@ -198,7 +188,7 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
               variant="contained"
               onClick={validateInputs}
             >
-              Sign in
+              Ingresar
             </Button>
             <Link
               component="button"
@@ -207,11 +197,11 @@ export default function SignIn(props: { disableCustomTheme?: boolean }) {
               variant="body2"
               sx={{ alignSelf: "center" }}
             >
-              Forgot your password?
+              ¿Olvidaste tu password?
             </Link>
           </Box>
         </Card>
       </SignInContainer>
-    </AppTheme>
+    </>
   )
 }

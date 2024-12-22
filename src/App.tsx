@@ -5,10 +5,12 @@ import Container from "@mui/material/Container"
 import Box from "@mui/material/Box"
 import CssBaseline from "@mui/material/CssBaseline"
 import SignIn from "./sign-in/SignIn"
-import { auth } from "../firebaseConfig" // Ruta al archivo de configuración
+import { auth } from "../firebaseConfig"
 import Button from "@mui/material/Button"
+import AppTheme from "./shared-theme/AppTheme"
+import ColorModeSelect from "./shared-theme/ColorModeSelect"
 
-const App = () => {
+const App = (props: { disableCustomTheme?: boolean }) => {
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [loading, setLoading] = useState(true)
     const [user, setUser] = useState<User | null>(null)
@@ -33,16 +35,17 @@ const App = () => {
     }
 
     return (
-        <>
-            {/* Added for HTML element and attribute style-normalizations */}
+        <AppTheme {...props}>
+            <ColorModeSelect sx={{ position: "fixed", top: "1rem", right: "1rem" }} />
             <CssBaseline />
 
             <Container maxWidth="lg">
                 {isAuthenticated ? (
-                    <Box sx={{ bgcolor: "#cfe8fc", height: "100vh" }}>
+                    <Box>
                         <h2>Pantalon para tiendas</h2>
                         <p>Usuario autenticado: {user?.email}</p>
                         <Button
+                            color="error"
                             variant="contained"
                             onClick={() => {
                                 signOut(auth)
@@ -55,7 +58,7 @@ const App = () => {
                     <SignIn />
                 )}
             </Container>
-        </>
+        </AppTheme>
     )
 }
 
