@@ -21,4 +21,9 @@ export const TEXTS = {
         CANCEL: "Cancelar",
         SEND: "Enviar",
     },
+    THEME: {
+        LIGHT: "Light",
+        DARK: "Dark",
+        SYSTEM: "Sistema",
+    }
 }
