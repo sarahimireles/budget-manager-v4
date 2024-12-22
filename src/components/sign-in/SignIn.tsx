@@ -14,6 +14,7 @@ import CustomSnackbar from "../common/CustomSnackbar"
 import { useSnackbar } from "../../utils/hooks/common/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
+import { TEXTS } from "../../types/common"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -84,7 +85,7 @@ export default function SignIn() {
     } catch (error: unknown) {
       console.error("Error en el sign-in:", error)
 
-      showSnackbar("Oopsy, algo salio mal. Intenta de nuevo.", "error")
+      showSnackbar(TEXTS.SNACKBAR.GENERAL_ERROR, "error")
     }
   }
 
@@ -96,7 +97,7 @@ export default function SignIn() {
 
     if (!email.value || !/\S+@\S+\.\S+/.test(email.value)) {
       setEmailError(true)
-      setEmailErrorMessage("Ingrese un correo valido por favor.")
+      setEmailErrorMessage(TEXTS.VALIDATIONS.INVALID_EMAIL)
       isValid = false
     } else {
       setEmailError(false)
@@ -105,7 +106,7 @@ export default function SignIn() {
 
     if (!password.value || password.value.length < 1) {
       setPasswordError(true)
-      setPasswordErrorMessage("El password debe contener al menos 1 caracter.")
+      setPasswordErrorMessage(TEXTS.VALIDATIONS.PASSWORD_TOO_SHORT)
       isValid = false
     } else {
       setPasswordError(false)
@@ -134,7 +135,7 @@ export default function SignIn() {
             variant="h4"
             sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
-            Ingresar
+            {TEXTS.FORM.LOGIN_TITLE}
           </Typography>
           <Box
             component="form"
@@ -148,14 +149,14 @@ export default function SignIn() {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">Correo electronico</FormLabel>
+              <FormLabel htmlFor="email">{TEXTS.FORM.EMAIL_LABEL}</FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
                 id="email"
                 type="email"
                 name="email"
-                placeholder="your@email.com"
+                placeholder={TEXTS.FORM.EMAIL_PLACEHOLDER}
                 autoComplete="email"
                 autoFocus
                 required
@@ -165,7 +166,7 @@ export default function SignIn() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">Password</FormLabel>
+              <FormLabel htmlFor="password">{TEXTS.FORM.PASSWORD_LABEL}</FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -188,7 +189,7 @@ export default function SignIn() {
               variant="contained"
               onClick={validateInputs}
             >
-              Ingresar
+              {TEXTS.FORM.LOGIN_TITLE}
             </Button>
             <Link
               component="button"
@@ -197,7 +198,7 @@ export default function SignIn() {
               variant="body2"
               sx={{ alignSelf: "center" }}
             >
-              ¿Olvidaste tu password?
+              {TEXTS.FORM.FORGOT_PASSWORD}
             </Link>
           </Box>
         </Card>
