@@ -10,10 +10,10 @@ import { sendPasswordResetEmail } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
 import CustomSnackbar from "../common/CustomSnackbar"
 import { useSnackbar } from "../../utils/hooks/snackbar/useSnackbar"
-import { TEXTS } from "../../types/common"
 import { isValidEmail } from "../../utils/functions"
 import { FormEvent, useRef } from "react"
 import { ForgotPasswordProps } from "../../types/sign-in"
+import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
   const emailRef = useRef<HTMLInputElement>(null)
@@ -25,16 +25,16 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
     const email: string = emailRef.current?.value ?? ""
 
     if (!isValidEmail(email)) {
-      showSnackbar(TEXTS.VALIDATIONS.INVALID_EMAIL, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.INVALID_EMAIL, "error")
       return // Detener el envío si el correo es inválido
     }
 
     try {
       await sendPasswordResetEmail(auth, email)
-      showSnackbar(TEXTS.SNACKBAR.EMAIL_SENT_SUCCESS, "success")
+      showSnackbar(SIGN_IN_CONSTANTS.EMAIL_SENT_SUCCESS, "success")
     } catch (error: unknown) {
       console.error("Error enviando correo para cambiar el password:", error)
-      showSnackbar(TEXTS.SNACKBAR.GENERAL_ERROR, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, "error")
     } finally {
       handleClose()
     }
@@ -60,12 +60,12 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           sx: { backgroundImage: "none" },
         }}
       >
-        <DialogTitle>{TEXTS.FORM.FORGOT_PASSWORD_TITLE}</DialogTitle>
+        <DialogTitle>{SIGN_IN_CONSTANTS.FORGOT_PASSWORD_DIALOG_TITLE}</DialogTitle>
         <DialogContent
           sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}
         >
           <DialogContentText>
-            {TEXTS.FORM.FORGOT_PASSWORD_DESCRIPTION}
+            {SIGN_IN_CONSTANTS.FORGOT_PASSWORD_DIALOG_DESCRIPTION}
           </DialogContentText>
           <OutlinedInput
             autoFocus
@@ -73,17 +73,17 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
             margin="dense"
             id="email"
             name="email"
-            label={TEXTS.FORM.EMAIL_LABEL}
-            placeholder={TEXTS.FORM.EMAIL_LABEL}
+            label={SIGN_IN_CONSTANTS.EMAIL_LABEL}
+            placeholder={SIGN_IN_CONSTANTS.EMAIL_LABEL}
             type="email"
             fullWidth
             inputRef={emailRef}
           />
         </DialogContent>
         <DialogActions sx={{ pb: 3, px: 3 }}>
-          <Button onClick={handleClose}>{TEXTS.DIALOG.CANCEL}</Button>
+          <Button onClick={handleClose}>{SIGN_IN_CONSTANTS.DIALOG_CANCEL}</Button>
           <Button variant="contained" onClick={handlePasswordReset}>
-            {TEXTS.DIALOG.SEND}
+            {SIGN_IN_CONSTANTS.DIALOG_SEND}
           </Button>
         </DialogActions>
       </Dialog>

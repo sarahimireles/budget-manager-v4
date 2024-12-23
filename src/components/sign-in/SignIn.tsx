@@ -14,8 +14,8 @@ import CustomSnackbar from "../common/CustomSnackbar"
 import { useSnackbar } from "../../utils/hooks/snackbar/useSnackbar"
 import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
-import { TEXTS } from "../../types/common"
 import { isValidEmail } from "../../utils/functions"
+import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
@@ -86,7 +86,7 @@ export default function SignIn() {
     } catch (error: unknown) {
       console.error("Error en el sign-in:", error)
 
-      showSnackbar(TEXTS.SNACKBAR.GENERAL_ERROR, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, "error")
     }
   }
 
@@ -98,7 +98,7 @@ export default function SignIn() {
 
     if (!email.value || !isValidEmail(email.value)) {
       setEmailError(true)
-      setEmailErrorMessage(TEXTS.VALIDATIONS.INVALID_EMAIL)
+      setEmailErrorMessage(SIGN_IN_CONSTANTS.INVALID_EMAIL)
       isValid = false
     } else {
       setEmailError(false)
@@ -107,7 +107,7 @@ export default function SignIn() {
 
     if (!password.value || password.value.length < 1) {
       setPasswordError(true)
-      setPasswordErrorMessage(TEXTS.VALIDATIONS.PASSWORD_TOO_SHORT)
+      setPasswordErrorMessage(SIGN_IN_CONSTANTS.PASSWORD_TOO_SHORT)
       isValid = false
     } else {
       setPasswordError(false)
@@ -136,7 +136,7 @@ export default function SignIn() {
             variant="h4"
             sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
-            {TEXTS.FORM.LOGIN_TITLE}
+            {SIGN_IN_CONSTANTS.LOGIN_SUBMIT}
           </Typography>
           <Box
             component="form"
@@ -150,14 +150,14 @@ export default function SignIn() {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">{TEXTS.FORM.EMAIL_LABEL}</FormLabel>
+              <FormLabel htmlFor="email">{SIGN_IN_CONSTANTS.EMAIL_LABEL}</FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
                 id="email"
                 type="email"
                 name="email"
-                placeholder={TEXTS.FORM.EMAIL_PLACEHOLDER}
+                placeholder={SIGN_IN_CONSTANTS.EMAIL_PLACEHOLDER}
                 autoComplete="email"
                 autoFocus
                 required
@@ -167,7 +167,7 @@ export default function SignIn() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">{TEXTS.FORM.PASSWORD_LABEL}</FormLabel>
+              <FormLabel htmlFor="password">{SIGN_IN_CONSTANTS.PASSWORD_LABEL}</FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}
@@ -190,7 +190,7 @@ export default function SignIn() {
               variant="contained"
               onClick={validateInputs}
             >
-              {TEXTS.FORM.LOGIN_TITLE}
+              {SIGN_IN_CONSTANTS.LOGIN_SUBMIT}
             </Button>
             <Link
               component="button"
@@ -199,7 +199,7 @@ export default function SignIn() {
               variant="body2"
               sx={{ alignSelf: "center" }}
             >
-              {TEXTS.FORM.FORGOT_PASSWORD}
+              {SIGN_IN_CONSTANTS.FORGOT_PASSWORD_LINK}
             </Link>
           </Box>
         </Card>
