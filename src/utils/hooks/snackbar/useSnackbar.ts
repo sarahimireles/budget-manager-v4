@@ -5,7 +5,7 @@ export const useSnackbar = () => {
   const [snackbar, setSnackbar] = useState<SnackbarState>({
     open: false,
     message: "",
-    severity: "info",
+    severity: Severity.INFO,
   })
 
   const showSnackbar = (message: string, severity: Severity) => {
