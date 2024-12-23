@@ -69,12 +69,8 @@ export default function SignIn() {
   const [open, setOpen] = useState(false)
   const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
 
-  const handleClickOpen = () => {
-    setOpen(true)
-  }
-
-  const handleClose = () => {
-    setOpen(false)
+  const toggleOpenSnackBar = () => {
+    setOpen(!open)
   }
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -96,12 +92,12 @@ export default function SignIn() {
     const email = document.getElementById("email") as HTMLInputElement
     const password = document.getElementById("password") as HTMLInputElement
 
-    let isValid = true
+    let formHasErrors = true
 
     if (!email.value || !isValidEmail(email.value)) {
       setEmailError(true)
       setEmailErrorMessage(SIGN_IN_CONSTANTS.INVALID_EMAIL)
-      isValid = false
+      formHasErrors = false
     } else {
       setEmailError(false)
       setEmailErrorMessage("")
@@ -110,17 +106,17 @@ export default function SignIn() {
     if (!password.value || password.value.length < 1) {
       setPasswordError(true)
       setPasswordErrorMessage(SIGN_IN_CONSTANTS.PASSWORD_TOO_SHORT)
-      isValid = false
+      formHasErrors = false
     } else {
       setPasswordError(false)
       setPasswordErrorMessage("")
     }
 
-    if (!isValid) {
+    if (!formHasErrors) {
       event.preventDefault()
     }
 
-    return isValid
+    return formHasErrors
   }
 
   return (
@@ -184,7 +180,7 @@ export default function SignIn() {
                 color={passwordError ? "error" : "primary"}
               />
             </FormControl>
-            <ForgotPassword open={open} handleClose={handleClose} />
+            <ForgotPassword open={open} handleClose={toggleOpenSnackBar} />
             <Button
               type="submit"
               fullWidth
@@ -196,7 +192,7 @@ export default function SignIn() {
             <Link
               component="button"
               type="button"
-              onClick={handleClickOpen}
+              onClick={toggleOpenSnackBar}
               variant="body2"
               sx={{ alignSelf: "center" }}
             >
