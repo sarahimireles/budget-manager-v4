@@ -174,7 +174,7 @@ export default function SignIn() {
                 error={passwordError}
                 helperText={passwordErrorMessage}
                 name="password"
-                placeholder="••••••"
+                placeholder={SIGN_IN_CONSTANTS.PASSWORD_PLACEHOLDER}
                 type="password"
                 id="password"
                 autoComplete="current-password"
