@@ -3,7 +3,12 @@ import Snackbar from "@mui/material/Snackbar"
 import Alert from "@mui/material/Alert"
 import { SnackbarProps } from "../../types/snackbar"
 
-const CustomSnackbar = ({ open, message, severity, onClose }: SnackbarProps) => {
+const CustomSnackbar = ({
+  open,
+  message,
+  severity,
+  onClose,
+}: SnackbarProps) => {
   return (
     <Snackbar
       open={open}

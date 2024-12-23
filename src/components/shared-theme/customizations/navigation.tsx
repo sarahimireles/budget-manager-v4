@@ -69,7 +69,8 @@ export const navigationCustomizations: Components<Theme> = {
         border: "1px solid",
         borderColor: gray[200],
         backgroundColor: (theme.vars || theme).palette.background.paper,
-        boxShadow: "inset 0 1px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 1px hsla(220, 35%, 90%, 0.5)",
+        boxShadow:
+          "inset 0 1px 0 1px hsla(220, 0%, 100%, 0.6), inset 0 -1px 0 1px hsla(220, 35%, 90%, 0.5)",
         "&:hover": {
           borderColor: gray[300],
           backgroundColor: (theme.vars || theme).palette.background.paper,
@@ -127,7 +128,8 @@ export const navigationCustomizations: Components<Theme> = {
         textDecoration: "none",
         width: "fit-content",
         "&::before": {
-          content: "\"\"",
+          // eslint-disable-next-line quotes
+          content: '""',
           position: "absolute",
           width: "100%",
           height: "1px",

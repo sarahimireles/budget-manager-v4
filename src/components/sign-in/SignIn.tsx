@@ -46,7 +46,8 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
     padding: theme.spacing(4),
   },
   "&::before": {
-    content: "\"\"",
+    // eslint-disable-next-line quotes
+    content: '""',
     display: "block",
     position: "absolute",
     zIndex: -1,
@@ -77,7 +78,8 @@ export default function SignIn() {
     event.preventDefault()
 
     const email = (document.getElementById("email") as HTMLInputElement).value
-    const password = (document.getElementById("password") as HTMLInputElement).value
+    const password = (document.getElementById("password") as HTMLInputElement)
+      .value
 
     try {
       await signInWithEmailAndPassword(auth, email, password)
@@ -148,7 +150,9 @@ export default function SignIn() {
             }}
           >
             <FormControl>
-              <FormLabel htmlFor="email">{SIGN_IN_CONSTANTS.EMAIL_LABEL}</FormLabel>
+              <FormLabel htmlFor="email">
+                {SIGN_IN_CONSTANTS.EMAIL_LABEL}
+              </FormLabel>
               <TextField
                 error={emailError}
                 helperText={emailErrorMessage}
@@ -165,7 +169,9 @@ export default function SignIn() {
               />
             </FormControl>
             <FormControl>
-              <FormLabel htmlFor="password">{SIGN_IN_CONSTANTS.PASSWORD_LABEL}</FormLabel>
+              <FormLabel htmlFor="password">
+                {SIGN_IN_CONSTANTS.PASSWORD_LABEL}
+              </FormLabel>
               <TextField
                 error={passwordError}
                 helperText={passwordErrorMessage}

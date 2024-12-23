@@ -2,28 +2,28 @@ import { createTheme, alpha, PaletteMode, Shadows } from "@mui/material/styles"
 
 declare module "@mui/material/Paper" {
   interface PaperPropsVariantOverrides {
-    highlighted: true;
+    highlighted: true
   }
 }
 declare module "@mui/material/styles/createPalette" {
   interface ColorRange {
-    50: string;
-    100: string;
-    200: string;
-    300: string;
-    400: string;
-    500: string;
-    600: string;
-    700: string;
-    800: string;
-    900: string;
+    50: string
+    100: string
+    200: string
+    300: string
+    400: string
+    500: string
+    600: string
+    700: string
+    800: string
+    900: string
   }
 
   // eslint-disable-next-line @typescript-eslint/no-empty-object-type
   interface PaletteColor extends ColorRange {}
 
   interface Palette {
-    baseShadow: string;
+    baseShadow: string
   }
 }
 
@@ -166,13 +166,19 @@ export const getDesignTokens = (mode: PaletteMode) => {
       background: {
         default: "hsl(0, 0%, 99%)",
         paper: "hsl(220, 35%, 97%)",
-        ...(mode === "dark" && { default: gray[900], paper: "hsl(220, 30%, 7%)" }),
+        ...(mode === "dark" && {
+          default: gray[900],
+          paper: "hsl(220, 30%, 7%)",
+        }),
       },
       text: {
         primary: gray[800],
         secondary: gray[600],
         warning: orange[400],
-        ...(mode === "dark" && { primary: "hsl(0, 0%, 100%)", secondary: gray[400] }),
+        ...(mode === "dark" && {
+          primary: "hsl(0, 0%, 100%)",
+          secondary: gray[400],
+        }),
       },
       action: {
         hover: alpha(gray[200], 0.2),
