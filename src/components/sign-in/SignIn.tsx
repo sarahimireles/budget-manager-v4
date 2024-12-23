@@ -16,7 +16,9 @@ import { signInWithEmailAndPassword } from "firebase/auth"
 import { auth } from "../../../firebaseConfig"
 import { isValidEmail } from "../../utils/functions"
 import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
+import { Severity } from "../../types/snackbar"
 
+// TODO: Move Card to a separate file
 const Card = styled(MuiCard)(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
@@ -86,7 +88,7 @@ export default function SignIn() {
     } catch (error: unknown) {
       console.error("Error en el sign-in:", error)
 
-      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, Severity.ERROR)
     }
   }
 

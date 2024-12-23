@@ -14,6 +14,7 @@ import { isValidEmail } from "../../utils/functions"
 import { FormEvent, useRef } from "react"
 import { ForgotPasswordProps } from "../../types/sign-in"
 import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
+import { Severity } from "../../types/snackbar"
 
 export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
   const emailRef = useRef<HTMLInputElement>(null)
@@ -25,16 +26,16 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
     const email: string = emailRef.current?.value ?? ""
 
     if (!isValidEmail(email)) {
-      showSnackbar(SIGN_IN_CONSTANTS.INVALID_EMAIL, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.INVALID_EMAIL, Severity.ERROR)
       return // Detener el envío si el correo es inválido
     }
 
     try {
       await sendPasswordResetEmail(auth, email)
-      showSnackbar(SIGN_IN_CONSTANTS.EMAIL_SENT_SUCCESS, "success")
+      showSnackbar(SIGN_IN_CONSTANTS.EMAIL_SENT_SUCCESS, Severity.SUCCESS)
     } catch (error: unknown) {
       console.error("Error enviando correo para cambiar el password:", error)
-      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, "error")
+      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, Severity.ERROR)
     } finally {
       handleClose()
     }

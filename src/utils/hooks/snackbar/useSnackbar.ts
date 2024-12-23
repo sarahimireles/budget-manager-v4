@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { SnackbarState } from "../../../types/snackbar"
+import { Severity, SnackbarState } from "../../../types/snackbar"
 
 export const useSnackbar = () => {
   const [snackbar, setSnackbar] = useState<SnackbarState>({
@@ -8,7 +8,7 @@ export const useSnackbar = () => {
     severity: "info",
   })
 
-  const showSnackbar = (message: string, severity: "error" | "warning" | "info" | "success") => {
+  const showSnackbar = (message: string, severity: Severity) => {
     setSnackbar({ open: true, message, severity })
   }
 

@@ -2,7 +2,7 @@ import * as React from "react"
 import { useColorScheme } from "@mui/material/styles"
 import MenuItem from "@mui/material/MenuItem"
 import Select, { SelectProps } from "@mui/material/Select"
-import { TEXTS } from "../../types/common"
+import { COMMON } from "../../types/common"
 
 export default function ColorModeSelect(props: SelectProps) {
   const { mode, setMode } = useColorScheme()
@@ -20,9 +20,9 @@ export default function ColorModeSelect(props: SelectProps) {
       }}
       {...props}
     >
-      <MenuItem value="system">{TEXTS.THEME.SYSTEM}</MenuItem>
-      <MenuItem value="light">{TEXTS.THEME.LIGHT}</MenuItem>
-      <MenuItem value="dark">{TEXTS.THEME.DARK}</MenuItem>
+      <MenuItem value="system">{COMMON.SYSTEM}</MenuItem>
+      <MenuItem value="light">{COMMON.LIGHT}</MenuItem>
+      <MenuItem value="dark">{COMMON.DARK}</MenuItem>
     </Select>
   )
 }
