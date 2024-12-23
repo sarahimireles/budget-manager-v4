@@ -6,14 +6,14 @@ export enum Severity {
 }
 
 export type SnackbarProps = {
-  open: boolean;
-  message: string;
-  severity: Severity;
-  onClose: () => void;
+  open: boolean
+  message: string
+  severity: Severity
+  onClose: () => void
 }
 
 export type SnackbarState = {
-  open: boolean;
-  message: string;
-  severity: Severity;
+  open: boolean
+  message: string
+  severity: Severity
 }

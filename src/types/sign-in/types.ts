@@ -1,4 +1,4 @@
 export type ForgotPasswordProps = {
-  open: boolean;
-  handleClose: () => void;
+  open: boolean
+  handleClose: () => void
 }

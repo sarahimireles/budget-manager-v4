@@ -16,11 +16,16 @@ import { ForgotPasswordProps } from "../../types/sign-in"
 import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
 import { Severity } from "../../types/snackbar"
 
-export default function ForgotPassword({ open, handleClose }: ForgotPasswordProps) {
+export default function ForgotPassword({
+  open,
+  handleClose,
+}: ForgotPasswordProps) {
   const emailRef = useRef<HTMLInputElement>(null)
   const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
 
-  const handlePasswordReset = async (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handlePasswordReset = async (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
     event.preventDefault()
 
     const email: string = emailRef.current?.value ?? ""
@@ -61,9 +66,16 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           sx: { backgroundImage: "none" },
         }}
       >
-        <DialogTitle>{SIGN_IN_CONSTANTS.FORGOT_PASSWORD_DIALOG_TITLE}</DialogTitle>
+        <DialogTitle>
+          {SIGN_IN_CONSTANTS.FORGOT_PASSWORD_DIALOG_TITLE}
+        </DialogTitle>
         <DialogContent
-          sx={{ display: "flex", flexDirection: "column", gap: 2, width: "100%" }}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: 2,
+            width: "100%",
+          }}
         >
           <DialogContentText>
             {SIGN_IN_CONSTANTS.FORGOT_PASSWORD_DIALOG_DESCRIPTION}
@@ -82,7 +94,9 @@ export default function ForgotPassword({ open, handleClose }: ForgotPasswordProp
           />
         </DialogContent>
         <DialogActions sx={{ pb: 3, px: 3 }}>
-          <Button onClick={handleClose}>{SIGN_IN_CONSTANTS.DIALOG_CANCEL}</Button>
+          <Button onClick={handleClose}>
+            {SIGN_IN_CONSTANTS.DIALOG_CANCEL}
+          </Button>
           <Button variant="contained" onClick={handlePasswordReset}>
             {SIGN_IN_CONSTANTS.DIALOG_SEND}
           </Button>
