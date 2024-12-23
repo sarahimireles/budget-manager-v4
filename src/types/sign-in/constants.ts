@@ -7,7 +7,7 @@ export const SIGN_IN_CONSTANTS = {
     FORGOT_PASSWORD_LINK: "¿Olvidaste tu password?",
     FORGOT_PASSWORD_DIALOG_DESCRIPTION: "Ingresa tu correo y te enviaremos un email para cambiar tu password.",
     INVALID_EMAIL: "Ingrese un correo valido por favor.",
-    PASSWORD_TOO_SHORT: "El password debe contener al menos 1 caracter.",
+    PASSWORD_TOO_SHORT: "El password debe contener al menos 8 caracteres.",
     EMAIL_SENT_SUCCESS: "Un correo ha sido enviado a esta direccion para cambiar el password.",
     GENERAL_ERROR: "Oopsy, algo salio mal. Intenta de nuevo.",
     PASSWORD_RESET_SUCCESS: "Un correo ha sido enviado a esta direccion para cambiar el password.",

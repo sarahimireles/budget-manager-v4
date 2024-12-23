@@ -1,7 +1,5 @@
-export const TEXTS = {
-    THEME: {
-        LIGHT: "Light",
-        DARK: "Dark",
-        SYSTEM: "Sistema",
-    }
+export const COMMON = {
+    LIGHT: "Light",
+    DARK: "Dark",
+    SYSTEM: "Sistema",
 }
