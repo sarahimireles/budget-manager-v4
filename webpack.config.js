@@ -34,8 +34,9 @@ module.exports = {
   ],
   devServer: {
     static: path.join(__dirname, 'dist'),
+    historyApiFallback: true, // Redirige todas las rutas al index.html
     compress: true,
-    port: 3000,
+    port: 3000
   },
   devtool: 'source-map',
 };
