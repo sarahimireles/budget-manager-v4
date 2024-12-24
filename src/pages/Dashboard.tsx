@@ -1,11 +1,8 @@
 import { Box, Button } from "@mui/material"
-import { signOut, User } from "firebase/auth"
+import { signOut } from "firebase/auth"
 import React from "react"
 import { auth } from "../../firebaseConfig"
-
-type DashboardProps = {
-  user: User | null
-}
+import { DashboardProps } from "../types/common"
 
 const Dashboard = (props: DashboardProps) => {
   return (
