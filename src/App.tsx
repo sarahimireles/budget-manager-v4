@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react"
-import { onAuthStateChanged, signOut, User } from "firebase/auth"
+import { onAuthStateChanged, User } from "firebase/auth"
 import "./styles/global.scss"
 import Container from "@mui/material/Container"
-import Box from "@mui/material/Box"
 import CssBaseline from "@mui/material/CssBaseline"
 import SignIn from "./components/sign-in/SignIn"
 import { auth } from "../firebaseConfig"
-import Button from "@mui/material/Button"
 import AppTheme from "./components/shared-theme/AppTheme"
 import ColorModeSelect from "./components/shared-theme/ColorModeSelect"
+import { Route, BrowserRouter, Routes } from "react-router-dom"
+import Accounts from "./pages/Accounts"
+import Dashboard from "./pages/Dashboard"
+import Navbar from "./components/common/Navbar"
 
 const App = (props: { disableCustomTheme?: boolean }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -41,19 +43,13 @@ const App = (props: { disableCustomTheme?: boolean }) => {
 
       <Container maxWidth="lg">
         {isAuthenticated ? (
-          <Box>
-            <h2>Pantalon para tiendas</h2>
-            <p>Usuario autenticado: {user?.email}</p>
-            <Button
-              color="error"
-              variant="contained"
-              onClick={() => {
-                signOut(auth)
-              }}
-            >
-              Cerrar sesion
-            </Button>
-          </Box>
+          <BrowserRouter>
+            <Navbar />
+            <Routes>
+              <Route path="/" element={<Dashboard user={user} />} />
+              <Route path="/accounts" element={<Accounts />} />
+            </Routes>
+          </BrowserRouter>
         ) : (
           <SignIn />
         )}
