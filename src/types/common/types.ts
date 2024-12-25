@@ -10,3 +10,9 @@ export type AppThemeProps = {
 export type DashboardProps = {
   user: User | null
 }
+
+export type AuthContextProps = {
+  user: User | null
+  isAuthenticated: boolean
+  loading: boolean
+}
