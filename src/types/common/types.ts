@@ -17,4 +17,5 @@ export type AuthContextProps = {
   user: User | null
   isAuthenticated: boolean
   loading: boolean
+  email: string
 }
