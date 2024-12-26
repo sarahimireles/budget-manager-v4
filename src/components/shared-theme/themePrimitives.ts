@@ -249,31 +249,37 @@ export const colorSchemes = {
   light: {
     palette: {
       primary: {
-        light: brand[200],
-        main: brand[400],
-        dark: brand[700],
+        main: "#6c38c6",
+        light: "#9a76d8",
+        dark: "#4825af",
+        contrastText: brand[50],
+      },
+      secondary: {
+        main: "#9dcc25",
+        light: "#abe432",
+        dark: "#8cbc1c",
         contrastText: brand[50],
       },
       info: {
-        light: brand[100],
-        main: brand[300],
-        dark: brand[600],
+        main: "#5c71f9",
+        light: "#7d8dfb",
+        dark: "#2840dc",
         contrastText: gray[50],
       },
       warning: {
-        light: orange[300],
-        main: orange[400],
-        dark: orange[800],
+        main: "#f9965c",
+        light: "#fbb28c",
+        dark: "#eb6700",
       },
       error: {
-        light: red[300],
-        main: red[400],
-        dark: red[800],
+        main: "#E85234",
+        light: "#ed755d",
+        dark: "#ba422a",
       },
       success: {
         light: green[300],
         main: green[400],
-        dark: green[800],
+        dark: "#48ac49",
       },
       grey: {
         ...gray,
@@ -401,6 +407,7 @@ export const shape = {
   borderRadius: 8,
 }
 
+// @ts-expect-error we dont know this code
 const defaultShadows: Shadows = [
   "none",
   "var(--template-palette-baseShadow)",

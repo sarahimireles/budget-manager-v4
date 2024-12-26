@@ -21,6 +21,7 @@ export default function ColorModeSelect(props: SelectProps) {
         )
       }
       SelectDisplayProps={{
+        // @ts-expect-error we dont know this code
         "data-screenshot": "toggle-mode",
       }}
       {...props}

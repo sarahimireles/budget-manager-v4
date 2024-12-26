@@ -5,11 +5,16 @@ import CssBaseline from "@mui/material/CssBaseline"
 import SignIn from "./components/sign-in/SignIn"
 import AppTheme from "./components/shared-theme/AppTheme"
 import ColorModeSelect from "./components/shared-theme/ColorModeSelect"
+import Box from "@mui/material/Box"
 import { Route, BrowserRouter, Routes } from "react-router-dom"
 import Navbar from "./components/common/Navbar"
 import { useAuthContext } from "./utils/hooks/common/useAuthContext"
 import { AuthProvider } from "./utils/components/AuthProvider"
 import { AppRoutes } from "./utils/common/AppRoutes"
+import Grid from "@mui/material/Grid2"
+import Paper from "@mui/material/Paper"
+import StyledButton from "./components/common/StyledButton"
+import StyledAppBar from "./components/common/StyledAppBar"
 
 const AuthContent = () => {
   const { isAuthenticated, loading } = useAuthContext()
@@ -20,7 +25,19 @@ const AuthContent = () => {
 
   return isAuthenticated ? (
     <BrowserRouter>
-      <Navbar />
+      <Box sx={{ flexGrow: 1 }}>
+          <StyledAppBar position="static" sx={{ padding: "1rem" }}>
+            <Grid container spacing={2}>
+              <Grid size={6}>Budget Manager</Grid>
+              <Grid
+                size={6}
+                sx={{ display: "inline-flex", justifyContent: "end" }}
+              >
+                <ColorModeSelect sx={{ height: "2rem" }} />
+              </Grid>
+            </Grid>
+          </StyledAppBar>
+        </Box>
       <Routes>
         {AppRoutes.map((route, index) => (
           <Route key={index} {...route} />
@@ -40,7 +57,7 @@ const App = (props: { disableCustomTheme?: boolean }) => {
           sx={{ position: "fixed", top: "1rem", right: "1rem" }}
         />
         <CssBaseline />
-
+        
         <Container maxWidth="lg">
           <AuthContent />
         </Container>
