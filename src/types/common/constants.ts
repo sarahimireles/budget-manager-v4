@@ -3,3 +3,9 @@ export const COLOR_MODE_SELECT = {
   DARK: "Dark",
   SYSTEM: "Sistema",
 }
+
+export enum ColorMode {
+  Light = "light",
+  Dark = "dark",
+  System = "system",
+}
