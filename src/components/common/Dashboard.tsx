@@ -8,8 +8,8 @@ import { DashboardProps } from "../../types/common"
 const Dashboard = (props: DashboardProps) => {
   return (
     <Box>
-      <Paper elevation={0}>
-        <h2>Pantalon para tiendas</h2>
+      <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
+        <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
         <p>Usuario autenticado: {props.email}</p>
         <Grid container spacing={3}>
           <Grid size={2}>

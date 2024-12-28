@@ -12,6 +12,7 @@ import { AuthProvider } from "./utils/components/AuthProvider"
 import { AppRoutes } from "./utils/common/AppRoutes"
 import Grid from "@mui/material/Grid2"
 import StyledAppBar from "./components/common/StyledAppBar"
+import Link from "@mui/material/Link"
 
 const AuthContent = () => {
   const { isAuthenticated, loading } = useAuthContext()
@@ -30,16 +31,16 @@ const AuthContent = () => {
                 size={1}
                 sx={{ display: "inline-flex", justifyContent: "end" }}
               >
-                {/* <StyledButton
-                  size="small"
-                  variant="text"
+                <Link
+                  component="button"
+                  color="textPrimary"
+                  underline="hover"
                   onClick={() => {
-                    signOut(auth)
+                    //signOut(auth)
                   }}
-                  sx={{ color: "#fff" }}
                 >
                   Cerrar sesion
-                </StyledButton> */}
+                </Link>
               </Grid>
               <Grid
                 size={1}

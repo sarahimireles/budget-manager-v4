@@ -190,7 +190,7 @@ export const getDesignTokens = (mode: PaletteMode) => {
       },
     },
     typography: {
-      fontFamily: "Inter, sans-serif",
+      fontFamily: "Poppins, serif",
       h1: {
         fontSize: defaultTheme.typography.pxToRem(48),
         fontWeight: 600,
@@ -255,9 +255,9 @@ export const colorSchemes = {
         contrastText: brand[50],
       },
       secondary: {
-        main: "#9dcc25",
-        light: "#abe432",
-        dark: "#8cbc1c",
+        main: "#b338c6",
+        light: "#d38fde",
+        dark: "#9600b6",
         contrastText: brand[50],
       },
       info: {
@@ -277,9 +277,12 @@ export const colorSchemes = {
         dark: "#ba422a",
       },
       success: {
-        light: green[300],
-        main: green[400],
-        dark: "#48ac49",
+        main: "#9dcc25",
+        light: "#abe432",
+        dark: "#8cbc1c",
+        // light: green[300],
+        // main: green[400],
+        // dark: "#48ac49",
       },
       grey: {
         ...gray,
@@ -354,7 +357,7 @@ export const colorSchemes = {
 }
 
 export const typography = {
-  fontFamily: "Inter, sans-serif",
+  fontFamily: "Poppins, serif",
   h1: {
     fontSize: defaultTheme.typography.pxToRem(48),
     fontWeight: 600,
