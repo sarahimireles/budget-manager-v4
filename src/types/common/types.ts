@@ -25,8 +25,10 @@ export type DatabaseContextProps = {
 }
 
 export type Account = {
-  id: string
   name: string
+  image: string
+  color: string
+  sumsToMonthlyBudget: boolean
   currentBalance: number
   key?: string
 }
