@@ -5,11 +5,13 @@ import Paper from "@mui/material/Paper"
 import StyledButton from "../components/common/StyledButton"
 import { DashboardProps } from "../types/common/index"
 import Container from "@mui/material/Container"
+import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
 
 const Dashboard = (props: DashboardProps) => {
   return (
     <Container maxWidth="lg">
       <Box>
+        <AccountsWidget />
         <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
           <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
           <p>Usuario autenticado: {props.user?.email || ""}</p>
