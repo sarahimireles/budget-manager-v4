@@ -5,7 +5,7 @@ import SignIn from "./components/sign-in/SignIn"
 import AppTheme from "./components/shared-theme/AppTheme"
 import { Route, BrowserRouter, Routes } from "react-router-dom"
 import { useAuthContext } from "./utils/hooks/common/useAuthContext"
-import { AuthProvider } from "./utils/components/AuthProvider"
+import { AuthProvider, DatabaseProvider } from "./utils/components"
 import { AppRoutes } from "./utils/common/AppRoutes"
 import Navbar from "./components/common/Navbar"
 
@@ -33,11 +33,13 @@ const AuthContent = () => {
 const App = (props: { disableCustomTheme?: boolean }) => {
   return (
     <AuthProvider>
-      <AppTheme {...props}>
-        <CssBaseline />
+      <DatabaseProvider>
+        <AppTheme {...props}>
+          <CssBaseline />
 
-        <AuthContent />
-      </AppTheme>
+          <AuthContent />
+        </AppTheme>
+      </DatabaseProvider>
     </AuthProvider>
   )
 }

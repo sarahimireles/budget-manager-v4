@@ -1,18 +1,13 @@
 import type { ThemeOptions } from "@mui/material/styles"
 import { User } from "firebase/auth"
 import { PaletteMode } from "@mui/material"
+import { Database } from "firebase/database"
 
 export type AppThemeProps = {
   children: React.ReactNode
   disableCustomTheme?: boolean
   themeComponents?: ThemeOptions["components"]
   themeMode?: PaletteMode
-}
-
-export type AuthContextProps = {
-  user: User | null
-  isAuthenticated: boolean
-  loading: boolean
 }
 
 export type DashboardProps = {
@@ -23,4 +18,15 @@ export type AuthContextProps = {
   user: User | null
   isAuthenticated: boolean
   loading: boolean
+}
+
+export type DatabaseContextProps = {
+  db: Database
+}
+
+export type Account = {
+  id: string
+  name: string
+  currentBalance: number
+  key?: string
 }
