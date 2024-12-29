@@ -9,3 +9,8 @@ export enum ColorMode {
   Dark = "dark",
   System = "system",
 }
+
+export const THEME_MODE = {
+  DARK: "dark",
+  LIGHT: "light",
+}
