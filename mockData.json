@@ -1,106 +1,106 @@
 {
-    "Uo9BXx7mJBb3IReNTrYqUWphPJ32": {
-      "accounts": {
-        "-Kc08K-i6rbuNEpxO0": {
-          "accountType": {
-            "name": "Debito"
-          },
-          "color": "#000080",
-          "currentBalance": 100,
-          "image": "money-check",
-          "name": "Debito Ruben",
-          "sumsToMonthlyBudget": true
+  "Uo9BXx7mJBb3IReNTrYqUWphPJ32": {
+    "accounts": {
+      "-Kc08K-i6rbuNEpxO0": {
+        "accountType": {
+          "name": "Debito"
         },
-        "-Kc08K-i6rbuNEpxO12": {
-          "accountType": {
-            "name": "Ahorros Ruben"
-          },
-          "color": "#000080",
-          "currentBalance": 1000,
-          "image": "hand-holding-usd",
-          "name": "Regreso a Mexico",
-          "sumsToMonthlyBudget": false
+        "color": "#000080",
+        "currentBalance": 100,
+        "image": "money-check",
+        "name": "Debito Ruben",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO12": {
+        "accountType": {
+          "name": "Ahorros Ruben"
         },
-        "-Kc08K-i6rbuNEpxO15": {
-          "accountType": {
-            "name": "Credito"
-          },
-          "color": "#b85cb8",
-          "currentBalance": -100,
-          "image": "money-check-alt",
-          "name": "Sarahi Credito",
-          "sumsToMonthlyBudget": true
+        "color": "#000080",
+        "currentBalance": 1000,
+        "image": "hand-holding-usd",
+        "name": "Regreso a Mexico",
+        "sumsToMonthlyBudget": false
+      },
+      "-Kc08K-i6rbuNEpxO15": {
+        "accountType": {
+          "name": "Credito"
         },
-        "-Kc08K-i6rbuNEpxO18": {
-          "accountType": {
-            "name": "Credito"
-          },
-          "color": "#8d1818",
-          "currentBalance": -2100,
-          "image": "money-check-alt",
-          "name": "Ruben Credito",
-          "sumsToMonthlyBudget": true
+        "color": "#b85cb8",
+        "currentBalance": -100,
+        "image": "money-check-alt",
+        "name": "Sarahi Credito",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO18": {
+        "accountType": {
+          "name": "Credito"
         },
-        "-Kc08K-i6rbuNEpxO2": {
-          "accountType": {
-            "name": "Debito"
-          },
-          "color": "#51cec5",
-          "currentBalance": 100,
-          "image": "money-check",
-          "name": "Debito Sarahi",
-          "sumsToMonthlyBudget": true
+        "color": "#8d1818",
+        "currentBalance": -2100,
+        "image": "money-check-alt",
+        "name": "Ruben Credito",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO2": {
+        "accountType": {
+          "name": "Debito"
         },
-        "-Kc08K-i6rbuNEpxO3": {
-          "accountType": {
-            "name": "Efectivo"
-          },
-          "color": "#23a5a5",
-          "currentBalance": 100,
-          "image": "wallet",
-          "name": "Efectivo Sarahi",
-          "sumsToMonthlyBudget": true
+        "color": "#51cec5",
+        "currentBalance": 100,
+        "image": "money-check",
+        "name": "Debito Sarahi",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO3": {
+        "accountType": {
+          "name": "Efectivo"
         },
-        "-Kc08K-i6rbuNEpxO4": {
-          "accountType": {
-            "name": "Efectivo"
-          },
-          "color": "#d6b9d6",
-          "currentBalance": 100,
-          "image": "wallet",
-          "name": "Efectivo Ruben",
-          "sumsToMonthlyBudget": true
+        "color": "#23a5a5",
+        "currentBalance": 100,
+        "image": "wallet",
+        "name": "Efectivo Sarahi",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO4": {
+        "accountType": {
+          "name": "Efectivo"
         },
-        "-Kc08K-i6rbuNEpxO7": {
-          "accountType": {
-            "name": "Ahorros Sarahi"
-          },
-          "color": "#000080",
-          "currentBalance": 100,
-          "image": "piggy-bank",
-          "name": "Tikitchen",
-          "sumsToMonthlyBudget": false
+        "color": "#d6b9d6",
+        "currentBalance": 100,
+        "image": "wallet",
+        "name": "Efectivo Ruben",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO7": {
+        "accountType": {
+          "name": "Ahorros Sarahi"
         },
-        "-NFsLDhBKL0BdjIvpLYU": {
-          "accountType": {
-            "name": "Ahorros Sarahi"
-          },
-          "color": "#ff9900",
-          "currentBalance": 100,
-          "image": "piggy-bank",
-          "name": "Ahorro Aguacates Sarahi",
-          "sumsToMonthlyBudget": false
+        "color": "#000080",
+        "currentBalance": 100,
+        "image": "piggy-bank",
+        "name": "Tikitchen",
+        "sumsToMonthlyBudget": false
+      },
+      "-NFsLDhBKL0BdjIvpLYU": {
+        "accountType": {
+          "name": "Ahorros Sarahi"
         },
-        "-NrwVFs3IPl24ZnKIyws": {
-          "accountType": {
-            "name": "Ahorros Ruben"
-          },
-          "color": "#ff0037",
-          "currentBalance": 100,
-          "image": "hand-holding-usd",
-          "name": "Ahorro para el carro nuevo en Mexico",
-          "sumsToMonthlyBudget": false
-        }
+        "color": "#ff9900",
+        "currentBalance": 100,
+        "image": "piggy-bank",
+        "name": "Ahorro Aguacates Sarahi",
+        "sumsToMonthlyBudget": false
+      },
+      "-NrwVFs3IPl24ZnKIyws": {
+        "accountType": {
+          "name": "Ahorros Ruben"
+        },
+        "color": "#ff0037",
+        "currentBalance": 100,
+        "image": "hand-holding-usd",
+        "name": "Ahorro para el carro nuevo en Mexico",
+        "sumsToMonthlyBudget": false
       }
     }
   }
+}
