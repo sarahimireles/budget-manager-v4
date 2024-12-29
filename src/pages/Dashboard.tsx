@@ -11,7 +11,6 @@ const Dashboard = (props: DashboardProps) => {
   return (
     <Container maxWidth="lg">
       <Box>
-        <AccountsWidget />
         <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
           <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
           <p>Usuario autenticado: {props.user?.email || ""}</p>
@@ -51,6 +50,9 @@ const Dashboard = (props: DashboardProps) => {
               <StyledButton variant="contained" color="error">
                 Error
               </StyledButton>
+            </Grid>
+            <Grid size={12}>
+              <AccountsWidget />
             </Grid>
           </Grid>
         </Paper>

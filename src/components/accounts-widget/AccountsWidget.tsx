@@ -13,6 +13,7 @@ import { AccountsService } from "../../services"
 import { AccountGroup } from "../../types/common"
 import { useDatabaseContext, useAuthContext } from "../../utils/hooks/common"
 import { formatCurrency } from "../../utils/functions"
+import { ExpandMore } from "@mui/icons-material"
 
 export const AccountsWidget = () => {
   const db = useDatabaseContext().db
@@ -36,24 +37,25 @@ export const AccountsWidget = () => {
       {accounts?.map((group) => (
         <Accordion key={group.name}>
           <AccordionSummary
-            //   expandIcon={<ExpandMoreIcon />}
+            expandIcon={<ExpandMore />}
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <Typography component="span" sx={{ width: "90%", flexShrink: 0 }}>
+            <Typography component="span" sx={{ flexShrink: 0 }}>
               {group.name}
             </Typography>
             <Typography
               component="span"
-              sx={{ color: "text.secondary", textAlign: "right" }}
+              sx={{
+                color: "text.secondary",
+                textAlign: "right",
+              }}
             >
               {formatCurrency(group.totalBalance)}
             </Typography>
           </AccordionSummary>
           <AccordionDetails>
-            <List
-              sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
-            >
+            <List>
               {group.items?.map((account) => (
                 <ListItem key={account.name}>
                   <ListItemText primary={account.name} />
