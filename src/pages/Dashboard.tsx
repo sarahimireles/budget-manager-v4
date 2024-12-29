@@ -1,22 +1,59 @@
-import { Box, Button } from "@mui/material"
-import { signOut } from "firebase/auth"
 import React from "react"
-import { auth } from "../../firebaseConfig"
+import Box from "@mui/material/Box"
+import Grid from "@mui/material/Grid2"
+import Paper from "@mui/material/Paper"
+import StyledButton from "../components/common/StyledButton"
+import { DashboardProps } from "../types/common/index"
+import Container from "@mui/material/Container"
 
-const Dashboard = () => {
+const Dashboard = (props: DashboardProps) => {
   return (
-    <Box>
-      <h2>Pantalon para tiendas</h2>
-      <Button
-        color="error"
-        variant="contained"
-        onClick={() => {
-          signOut(auth)
-        }}
-      >
-        Cerrar sesion
-      </Button>
-    </Box>
+    <Container maxWidth="lg">
+      <Box>
+        <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
+          <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
+          <p>Usuario autenticado: {props.user?.email || ""}</p>
+          <Grid container spacing={3}>
+            <Grid size={2}>
+              <StyledButton variant="contained">Primary</StyledButton>
+            </Grid>
+            <Grid size={3}>
+              <StyledButton variant="contained" color="secondary">
+                Secondary
+              </StyledButton>
+            </Grid>
+            <Grid size={2}>
+              <StyledButton variant="contained" color="primary" disabled>
+                Disabled
+              </StyledButton>
+            </Grid>
+            <Grid size={2}>
+              <StyledButton
+                variant="contained"
+                color="info"
+                sx={{ textTransform: "none" }}
+              >
+                Info
+              </StyledButton>
+            </Grid>
+            <Grid size={2}>
+              <StyledButton
+                variant="contained"
+                color="success"
+                sx={{ textTransform: "none" }}
+              >
+                Success
+              </StyledButton>
+            </Grid>
+            <Grid size={2}>
+              <StyledButton variant="contained" color="error">
+                Error
+              </StyledButton>
+            </Grid>
+          </Grid>
+        </Paper>
+      </Box>
+    </Container>
   )
 }
 
