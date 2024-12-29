@@ -12,13 +12,17 @@ const Navbar = () => {
     <StyledAppBar position="static" sx={{ padding: "1rem" }}>
       <Grid container spacing={2}>
         <Grid size={9}>
-          <LinkRoute to="/">Budget Manager</LinkRoute>
+          <LinkRoute className="navbar-link" to="/">
+            Budget Manager
+          </LinkRoute>
         </Grid>
         <Grid
           size={2}
           sx={{ display: "inline-flex", justifyContent: "space-around" }}
         >
-          <LinkRoute to="/accounts">Accounts</LinkRoute>
+          <LinkRoute className="navbar-link" to="/accounts">
+            Accounts
+          </LinkRoute>
           <Link
             component="button"
             color="textPrimary"
