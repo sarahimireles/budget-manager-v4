@@ -1,7 +1,5 @@
 import {
-  Accordion,
   AccordionDetails,
-  AccordionSummary,
   Box,
   List,
   ListItem,
@@ -13,7 +11,11 @@ import { AccountsService } from "../../services"
 import { AccountGroup } from "../../types/common"
 import { useDatabaseContext, useAuthContext } from "../../utils/hooks/common"
 import { formatCurrency } from "../../utils/functions"
-import { ExpandMore } from "@mui/icons-material"
+import Grid from "@mui/material/Grid2"
+import {
+  StyledAccordion,
+  StyledAccordionSummary,
+} from "../common/StyledAccordion"
 
 export const AccountsWidget = () => {
   const db = useDatabaseContext().db
@@ -35,25 +37,20 @@ export const AccountsWidget = () => {
   return (
     <Box>
       {accounts?.map((group) => (
-        <Accordion key={group.name}>
-          <AccordionSummary
-            expandIcon={<ExpandMore />}
+        <StyledAccordion key={group.name}>
+          <StyledAccordionSummary
             aria-controls="panel1-content"
             id="panel1-header"
           >
-            <Typography component="span" sx={{ flexShrink: 0 }}>
-              {group.name}
-            </Typography>
-            <Typography
-              component="span"
-              sx={{
-                color: "text.secondary",
-                textAlign: "right",
-              }}
-            >
-              {formatCurrency(group.totalBalance)}
-            </Typography>
-          </AccordionSummary>
+            <Grid container spacing={3} sx={{ width: "100%" }}>
+              <Grid size={9}>
+                <Typography>{group.name}</Typography>
+              </Grid>
+              <Grid size={3} sx={{ textAlign: "right" }}>
+                <Typography>{formatCurrency(group.totalBalance)}</Typography>
+              </Grid>
+            </Grid>
+          </StyledAccordionSummary>
           <AccordionDetails>
             <List>
               {group.items?.map((account) => (
@@ -66,7 +63,7 @@ export const AccountsWidget = () => {
               ))}
             </List>
           </AccordionDetails>
-        </Accordion>
+        </StyledAccordion>
       ))}
     </Box>
   )
