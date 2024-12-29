@@ -280,9 +280,6 @@ export const colorSchemes = {
         main: "#9dcc25",
         light: "#abe432",
         dark: "#8cbc1c",
-        // light: green[300],
-        // main: green[400],
-        // dark: "#48ac49",
       },
       grey: {
         ...gray,
