@@ -6,6 +6,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js',
+    assetModuleFilename: 'images/[hash][ext][query]',
   },
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.css', '.scss'],
@@ -24,6 +25,10 @@ module.exports = {
       {
         test: /\.scss$/, // Rule for SCSS files
         use: ['style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i, // Match image file extensions
+        type: 'asset/resource',        // Use asset modules to emit files
       },
     ],
   },
