@@ -13,7 +13,13 @@ const Dashboard = (props: DashboardProps) => {
       <Box>
         <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
           <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
-          <p>Usuario autenticado: {props.user?.email || ""}</p>
+          <p>
+            <span
+              className="fa-solid fa-user"
+              style={{ marginRight: "10px" }}
+            ></span>
+            Usuario autenticado: {props.user?.email || ""}
+          </p>
           <Grid container spacing={3}>
             <Grid size={2}>
               <StyledButton variant="contained">Primary</StyledButton>
