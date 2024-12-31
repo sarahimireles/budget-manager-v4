@@ -25,8 +25,9 @@ chrome-user-data
 !.vscode/launch.json
 *.swp
 *.swo
+dist
 
-packages/react-devtools-core/dist
+packages/react-devtools-core/
 packages/react-devtools-extensions/chrome/build
 packages/react-devtools-extensions/chrome/*.crx
 packages/react-devtools-extensions/chrome/*.pem
@@ -35,7 +36,7 @@ packages/react-devtools-extensions/firefox/*.xpi
 packages/react-devtools-extensions/firefox/*.pem
 packages/react-devtools-extensions/shared/build
 packages/react-devtools-extensions/.tempUserDataDir
-packages/react-devtools-fusebox/dist
-packages/react-devtools-inline/dist
-packages/react-devtools-shell/dist
-packages/react-devtools-timeline/dist
+packages/react-devtools-fusebox/
+packages/react-devtools-inline/
+packages/react-devtools-shell/
+packages/react-devtools-timeline/
