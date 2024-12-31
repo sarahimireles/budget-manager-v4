@@ -4,9 +4,10 @@ import { outlinedInputClasses } from "@mui/material/OutlinedInput"
 import { svgIconClasses } from "@mui/material/SvgIcon"
 import { toggleButtonGroupClasses } from "@mui/material/ToggleButtonGroup"
 import { toggleButtonClasses } from "@mui/material/ToggleButton"
-import CheckBoxOutlineBlankRoundedIcon from "@mui/icons-material/CheckBoxOutlineBlankRounded"
-import CheckRoundedIcon from "@mui/icons-material/CheckRounded"
-import RemoveRoundedIcon from "@mui/icons-material/RemoveRounded"
+import { faSquareCheck } from "@fortawesome/free-solid-svg-icons/faSquareCheck"
+import { faCircleCheck } from "@fortawesome/free-solid-svg-icons/faCircleCheck"
+import { faCircleMinus } from "@fortawesome/free-solid-svg-icons/faCircleMinus"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { gray, brand } from "../themePrimitives"
 
 export const inputsCustomizations: Components<Theme> = {
@@ -313,12 +314,14 @@ export const inputsCustomizations: Components<Theme> = {
     defaultProps: {
       disableRipple: true,
       icon: (
-        <CheckBoxOutlineBlankRoundedIcon
-          sx={{ color: "hsla(210, 0%, 0%, 0.0)" }}
-        />
+        <FontAwesomeIcon icon={faSquareCheck} color="hsla(210, 0%, 0%, 0.0)" />
       ),
-      checkedIcon: <CheckRoundedIcon sx={{ height: 14, width: 14 }} />,
-      indeterminateIcon: <RemoveRoundedIcon sx={{ height: 14, width: 14 }} />,
+      checkedIcon: (
+        <FontAwesomeIcon icon={faCircleCheck} height={14} width={14} />
+      ),
+      indeterminateIcon: (
+        <FontAwesomeIcon icon={faCircleMinus} height={14} width={14} />
+      ),
     },
     styleOverrides: {
       root: ({ theme }) => ({
