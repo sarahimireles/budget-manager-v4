@@ -3,16 +3,13 @@ import {
   Card,
   CardContent,
   CardHeader,
-  IconButton,
   List,
   ListItem,
   ListItemText,
-  Tooltip,
   Typography,
 } from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { AccountsService } from "../../services"
-import { AccountGroup } from "../../types/common"
 import { useDatabaseContext, useAuthContext } from "../../utils/hooks/common"
 import { formatCurrency } from "../../utils/functions"
 import Grid from "@mui/material/Grid2"
@@ -21,7 +18,11 @@ import {
   StyledAccordionSummary,
 } from "../common/StyledAccordion"
 import { Add } from "@mui/icons-material"
-import { ACCOUNTS_WIDGET_CONSTANTS } from "../../types/accounts-widget"
+import {
+  AccountGroup,
+  ACCOUNTS_WIDGET_CONSTANTS,
+} from "../../types/accounts-widget"
+import StyledButton from "../common/StyledButton"
 
 export const AccountsWidget = () => {
   const db = useDatabaseContext().db
@@ -43,45 +44,57 @@ export const AccountsWidget = () => {
   return (
     <Card>
       <CardHeader
+        sx={{ paddingBottom: "1.5rem" }}
         title={ACCOUNTS_WIDGET_CONSTANTS.TITLE}
         action={
-          <Tooltip title={ACCOUNTS_WIDGET_CONSTANTS.ADD_TOOLTIP}>
-            <IconButton>
-              <Add />
-            </IconButton>
-          </Tooltip>
+          <StyledButton
+            variant="text"
+            size="small"
+            color="primary"
+            startIcon={<Add />}
+          >
+            {ACCOUNTS_WIDGET_CONSTANTS.ADD_ACCOUNT_TEXT}
+          </StyledButton>
         }
       />
       <CardContent sx={{ p: 0, "&:last-child": { paddingBottom: 0 } }}>
-        {accounts?.map((group) => (
-          <StyledAccordion key={group.name}>
-            <StyledAccordionSummary
-              aria-controls="panel1-content"
-              id="panel1-header"
-            >
-              <Grid container spacing={3} sx={{ width: "100%" }}>
-                <Grid size={9}>
-                  <Typography>{group.name}</Typography>
-                </Grid>
-                <Grid size={3} sx={{ textAlign: "right" }}>
-                  <Typography>{formatCurrency(group.totalBalance)}</Typography>
-                </Grid>
-              </Grid>
-            </StyledAccordionSummary>
-            <AccordionDetails>
-              <List>
-                {group.items?.map((account) => (
-                  <ListItem key={account.name}>
-                    <ListItemText primary={account.name} />
-                    <Typography sx={{ textAlign: "right" }}>
-                      {formatCurrency(account.currentBalance)}
+        {accounts != undefined && accounts.length > 0 ? (
+          accounts?.map((group) => (
+            <StyledAccordion key={group.name}>
+              <StyledAccordionSummary
+                aria-controls="panel1-content"
+                id="panel1-header"
+              >
+                <Grid container spacing={3} sx={{ width: "100%" }}>
+                  <Grid size={9}>
+                    <Typography>{group.name}</Typography>
+                  </Grid>
+                  <Grid size={3} sx={{ textAlign: "right" }}>
+                    <Typography>
+                      {formatCurrency(group.totalBalance)}
                     </Typography>
-                  </ListItem>
-                ))}
-              </List>
-            </AccordionDetails>
-          </StyledAccordion>
-        ))}
+                  </Grid>
+                </Grid>
+              </StyledAccordionSummary>
+              <AccordionDetails>
+                <List>
+                  {group.items?.map((account) => (
+                    <ListItem key={account.name}>
+                      <ListItemText primary={account.name} />
+                      <Typography sx={{ textAlign: "right" }}>
+                        {formatCurrency(account.currentBalance)}
+                      </Typography>
+                    </ListItem>
+                  ))}
+                </List>
+              </AccordionDetails>
+            </StyledAccordion>
+          ))
+        ) : (
+          <Typography sx={{ pl: 2, pr: 2, pb: 2 }}>
+            No hay cuentas registradas
+          </Typography>
+        )}
       </CardContent>
     </Card>
   )
