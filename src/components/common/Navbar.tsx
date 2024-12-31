@@ -12,8 +12,12 @@ const Navbar = () => {
     <StyledAppBar position="static" sx={{ padding: "1rem" }}>
       <Grid container spacing={2}>
         <Grid size={9}>
-          <LinkRoute className="navbar-link" to="/">
-            Budget Manager
+          <LinkRoute
+            className="navbar-link"
+            to="/"
+            style={{ textDecoration: "none" }}
+          >
+            <span className="brand">BudManager</span>
           </LinkRoute>
         </Grid>
         <Grid
