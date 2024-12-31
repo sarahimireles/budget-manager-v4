@@ -1,0 +1,13 @@
+{
+  "database": {
+      "port": 9000,
+      "rules": "database.rules.json"
+    },
+  "emulators": {
+    "database": {
+      "port": 9000,
+      "rules": "database.rules.json"
+    },
+    "singleProjectMode": true
+  }
+}

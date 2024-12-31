@@ -5,6 +5,7 @@ import Paper from "@mui/material/Paper"
 import StyledButton from "../components/common/StyledButton"
 import { DashboardProps } from "../types/common/index"
 import Container from "@mui/material/Container"
+import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
 
 const Dashboard = (props: DashboardProps) => {
   return (
@@ -49,6 +50,9 @@ const Dashboard = (props: DashboardProps) => {
               <StyledButton variant="contained" color="error">
                 Error
               </StyledButton>
+            </Grid>
+            <Grid size={12}>
+              <AccountsWidget />
             </Grid>
           </Grid>
         </Paper>

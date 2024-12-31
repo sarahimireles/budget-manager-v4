@@ -1,0 +1,66 @@
+{
+  "Uo9BXx7mJBb3IReNTrYqUWphPJ32": {
+    "accounts": {
+      "-Kc08K-i6rbuNEpxO0": {
+        "accountType": {
+          "name": "Debito"
+        },
+        "color": "#000080",
+        "currentBalance": 100,
+        "image": "money-check",
+        "name": "Debito Persona 1",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO15": {
+        "accountType": {
+          "name": "Credito"
+        },
+        "color": "#b85cb8",
+        "currentBalance": -100,
+        "image": "money-check-alt",
+        "name": "Persona 2 Credito",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO18": {
+        "accountType": {
+          "name": "Credito"
+        },
+        "color": "#8d1818",
+        "currentBalance": -2100,
+        "image": "money-check-alt",
+        "name": "Persona 1 Credito",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO2": {
+        "accountType": {
+          "name": "Debito"
+        },
+        "color": "#51cec5",
+        "currentBalance": 100,
+        "image": "money-check",
+        "name": "Debito Persona 2",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO3": {
+        "accountType": {
+          "name": "Efectivo"
+        },
+        "color": "#23a5a5",
+        "currentBalance": 100,
+        "image": "wallet",
+        "name": "Efectivo Persona 2",
+        "sumsToMonthlyBudget": true
+      },
+      "-Kc08K-i6rbuNEpxO4": {
+        "accountType": {
+          "name": "Efectivo"
+        },
+        "color": "#d6b9d6",
+        "currentBalance": 100,
+        "image": "wallet",
+        "name": "Efectivo Persona 1",
+        "sumsToMonthlyBudget": true
+      }
+    }
+  }
+}
