@@ -8,6 +8,7 @@ import Container from "@mui/material/Container"
 import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
 
 const Dashboard = (props: DashboardProps) => {
+  const icon = "fa-user"
   return (
     <Container maxWidth="lg">
       <Box>
@@ -15,7 +16,7 @@ const Dashboard = (props: DashboardProps) => {
           <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
           <p>
             <span
-              className="fa-solid fa-user"
+              className={`fa-solid ${icon}`}
               style={{ marginRight: "10px" }}
             ></span>
             Usuario autenticado: {props.user?.email || ""}
