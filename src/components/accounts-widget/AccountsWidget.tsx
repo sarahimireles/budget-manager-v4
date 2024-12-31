@@ -17,7 +17,8 @@ import {
   StyledAccordion,
   StyledAccordionSummary,
 } from "../common/StyledAccordion"
-import { Add } from "@mui/icons-material"
+import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import {
   AccountGroup,
   ACCOUNTS_WIDGET_CONSTANTS,
@@ -51,7 +52,7 @@ export const AccountsWidget = () => {
             variant="text"
             size="small"
             color="primary"
-            startIcon={<Add />}
+            startIcon={<FontAwesomeIcon icon={faPlus} />}
           >
             {ACCOUNTS_WIDGET_CONSTANTS.ADD_ACCOUNT_TEXT}
           </StyledButton>

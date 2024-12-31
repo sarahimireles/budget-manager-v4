@@ -1,6 +1,7 @@
 import React, { Fragment, useState } from "react"
-import DarkModeIcon from "@mui/icons-material/DarkModeRounded"
-import LightModeIcon from "@mui/icons-material/LightModeRounded"
+import { faMoon } from "@fortawesome/free-solid-svg-icons/faMoon"
+import { faSun } from "@fortawesome/free-solid-svg-icons/faSun"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import Box from "@mui/material/Box"
 import IconButton, { IconButtonOwnProps } from "@mui/material/IconButton"
 import Menu from "@mui/material/Menu"
@@ -39,8 +40,8 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
   }
   const resolvedMode = (systemMode || mode) as "light" | "dark"
   const icon = {
-    light: <LightModeIcon />,
-    dark: <DarkModeIcon />,
+    light: <FontAwesomeIcon icon={faMoon} />,
+    dark: <FontAwesomeIcon icon={faSun} />,
   }[resolvedMode]
   return (
     <Fragment>

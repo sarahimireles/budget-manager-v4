@@ -6,7 +6,8 @@ import { dividerClasses } from "@mui/material/Divider"
 import { menuItemClasses } from "@mui/material/MenuItem"
 import { selectClasses } from "@mui/material/Select"
 import { tabClasses } from "@mui/material/Tab"
-import UnfoldMoreRoundedIcon from "@mui/icons-material/UnfoldMoreRounded"
+import { faArrowsUpDown } from "@fortawesome/free-solid-svg-icons/faArrowsUpDown"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { gray, brand } from "../themePrimitives"
 import { forwardRef } from "react"
 
@@ -60,7 +61,7 @@ export const navigationCustomizations: Components<Theme> = {
     defaultProps: {
       // eslint-disable-next-line react/display-name
       IconComponent: forwardRef<SVGSVGElement, SvgIconProps>((props, ref) => (
-        <UnfoldMoreRoundedIcon fontSize="small" {...props} ref={ref} />
+        <FontAwesomeIcon icon={faArrowsUpDown} size="sm" ref={ref} />
       )),
     },
     styleOverrides: {
