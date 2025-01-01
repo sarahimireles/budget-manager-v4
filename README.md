@@ -19,7 +19,7 @@ Create a `firebaseConfig.ts` file with your credentials in root like the followi
 ```
 // firebaseConfig.ts
 import { initializeApp } from "firebase/app"
-import { connectAuthEmulator, getAuth } from "firebase/auth"
+import { getAuth } from "firebase/auth"
 
 // Change this
 const firebaseConfig = {
@@ -32,27 +32,18 @@ const firebaseConfig = {
   appId: "appId",
 }
 
-// Init Firebase
+// Init Firebase app
 const app = initializeApp(firebaseConfig)
 
-// Export Firebase Authentication
+// Export Auth
 export const auth = getAuth(app)
-
-if (process.env.NODE_ENV === "development") {
-  connectAuthEmulator(auth, "http://localhost:9099")
-}
 
 export default app
 ```
 
-Start firebase emulator:
+Start server and emulator
 ```
-firebase emulators:start
-```
-
-Start server:
-```
-npm start
+npm run start:dev
 ```
 
 Enjoy :P
