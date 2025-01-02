@@ -6,6 +6,7 @@ import StyledButton from "../components/common/StyledButton"
 import { DashboardProps } from "../types/common/index"
 import Container from "@mui/material/Container"
 import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
+import SimpleForm from "../components/common/SimpleForm"
 
 const Dashboard = (props: DashboardProps) => {
   const icon = "fa-user"
@@ -60,6 +61,9 @@ const Dashboard = (props: DashboardProps) => {
             </Grid>
             <Grid size={12}>
               <AccountsWidget />
+            </Grid>
+            <Grid size={6}>
+              <SimpleForm />
             </Grid>
           </Grid>
         </Paper>
