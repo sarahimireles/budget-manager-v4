@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import { Box, Button, TextField } from "@mui/material"
+import { Box, Button, FormControlLabel, Switch, TextField } from "@mui/material"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -12,6 +12,7 @@ const SimpleForm = () => {
   const [formValues, setFormValues] = useState({
     name: "",
     balance: 0,
+    isSum: false,
   })
 
   const [formErrors, setFormErrors] = useState<formError>({
@@ -43,6 +44,10 @@ const SimpleForm = () => {
     }
   }
 
+  const handleToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValues((prev) => ({ ...prev, isSum: event.target.checked }))
+  }
+
   return (
     <Box
       sx={{
@@ -72,6 +77,12 @@ const SimpleForm = () => {
         error={!!formErrors.balance}
         helperText={formErrors.balance}
         type="number"
+      />
+
+      {/* Switch */}
+      <FormControlLabel
+        control={<Switch checked={formValues.isSum} onChange={handleToggle} />}
+        label="Se suma al presupuesto"
       />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
