@@ -34,3 +34,12 @@ export type IconSelectProps = {
   handleIconChange: (event: SelectChangeEvent) => void
   icons: string[]
 }
+
+export type IconPickerProps = {
+  label: string
+  icons: string[]
+  handleIconChange: (selectedIcon: string) => void
+  selectedColor: string
+  selectedIcon: string
+  error: string | undefined
+}
