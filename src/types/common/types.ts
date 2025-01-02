@@ -1,6 +1,6 @@
 import type { ThemeOptions } from "@mui/material/styles"
 import { User } from "firebase/auth"
-import { PaletteMode } from "@mui/material"
+import { PaletteMode, SelectChangeEvent } from "@mui/material"
 import { Database } from "firebase/database"
 
 export type AppThemeProps = {
@@ -22,4 +22,15 @@ export type AuthContextProps = {
 
 export type DatabaseContextProps = {
   db: Database
+}
+
+export type StyledIconProps = {
+  icon: string
+}
+
+export type IconSelectProps = {
+  label: string
+  icon: string
+  handleIconChange: (event: SelectChangeEvent) => void
+  icons: string[]
 }

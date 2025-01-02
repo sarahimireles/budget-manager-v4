@@ -4,9 +4,12 @@ import {
   Box,
   Button,
   FormControlLabel,
+  SelectChangeEvent,
   Switch,
   TextField,
 } from "@mui/material"
+import { AccountIcons } from "../../types/common"
+import { IconSelect } from "./IconSelect"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -33,6 +36,7 @@ const SimpleForm = () => {
     balance: 0,
     isSum: false,
     autoCompleteOption: { label: "", value: "" },
+    icon: AccountIcons[0],
   })
 
   const [formErrors, setFormErrors] = useState<formError>({
@@ -80,6 +84,10 @@ const SimpleForm = () => {
       autoCompleteOption: value || { label: "", value: "" },
     }))
     setFormErrors((prev) => ({ ...prev, autoCompleteOption: "" })) // Limpiar errores
+  }
+
+  const handleIconChange = (event: SelectChangeEvent) => {
+    setFormValues((prev) => ({ ...prev, icon: event.target.value as string }))
   }
 
   return (
@@ -136,6 +144,15 @@ const SimpleForm = () => {
         )}
         isOptionEqualToValue={(option, value) => option.value === value?.value} // Compara valores para evitar errores
       />
+
+      {/* Select icon */}
+      <IconSelect
+        label="Icono"
+        icon={formValues.icon}
+        handleIconChange={handleIconChange}
+        icons={AccountIcons}
+      />
+
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Enviar
       </Button>
