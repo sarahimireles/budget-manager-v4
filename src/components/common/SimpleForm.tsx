@@ -5,15 +5,18 @@ import { Box, Button, TextField } from "@mui/material"
 
 type formError = {
   name?: string
+  balance?: string
 }
 
 const SimpleForm = () => {
   const [formValues, setFormValues] = useState({
     name: "",
+    balance: 0,
   })
 
   const [formErrors, setFormErrors] = useState<formError>({
     name: "",
+    balance: "",
   })
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -26,6 +29,9 @@ const SimpleForm = () => {
     const errors: formError = {}
 
     if (!formValues.name.trim()) errors.name = "El nombre es obligatorio"
+    const min = 0
+    const balance = Number(formValues.balance)
+    if (balance < min) errors.balance = `El valor no puede ser menor que ${min}`
 
     setFormErrors(errors)
     return Object.keys(errors).length === 0
@@ -54,6 +60,18 @@ const SimpleForm = () => {
         onChange={handleChange}
         error={!!formErrors.name}
         helperText={formErrors.name}
+      />
+
+      {/* TextField para números */}
+      <TextField
+        label="Edad"
+        name="balance"
+        variant="outlined"
+        value={formValues.balance}
+        onChange={handleChange}
+        error={!!formErrors.balance}
+        helperText={formErrors.balance}
+        type="number"
       />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
