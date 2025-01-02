@@ -11,7 +11,7 @@ import {
 } from "@mui/material"
 import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
-import { IconPicker } from "./IconPicker"
+import { IconPicker } from "./icon-picker/IconPicker"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 

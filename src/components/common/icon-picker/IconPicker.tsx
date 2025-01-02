@@ -1,7 +1,7 @@
 import { Box, FormControl, FormHelperText, InputLabel } from "@mui/material"
 import React from "react"
-import { StyledIcon } from "./StyledIcon"
-import { IconPickerProps } from "../../types/common"
+import { StyledIcon } from "../StyledIcon"
+import { IconPickerProps } from "../../../types/common"
 import "./IconPicker.scss"
 
 export const IconPicker = (props: IconPickerProps) => {
