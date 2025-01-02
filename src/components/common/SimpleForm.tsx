@@ -10,8 +10,8 @@ import {
   useTheme,
 } from "@mui/material"
 import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
-import { IconSelect } from "./IconSelect"
 import { IconPicker } from "./icon-picker/IconPicker"
+import { IconSelect } from "./IconSelect"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
