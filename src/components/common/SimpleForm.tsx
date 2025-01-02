@@ -3,17 +3,13 @@ import {
   Autocomplete,
   Box,
   Button,
-  FormControl,
   FormControlLabel,
-  InputLabel,
-  MenuItem,
-  Select,
   SelectChangeEvent,
   Switch,
   TextField,
 } from "@mui/material"
 import { AccountIcons } from "../../types/common"
-import { StyledIcon } from "./StyledIcon"
+import { IconSelect } from "./IconSelect"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -150,22 +146,12 @@ const SimpleForm = () => {
       />
 
       {/* Select icon */}
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Icono</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={formValues.icon}
-          label="Icono"
-          onChange={handleIconChange}
-        >
-          {AccountIcons.map((icon) => (
-            <MenuItem key={icon} value={icon}>
-              <StyledIcon icon={icon} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <IconSelect
+        label="Icono"
+        icon={formValues.icon}
+        handleIconChange={handleIconChange}
+        icons={AccountIcons}
+      />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Enviar

@@ -1,6 +1,6 @@
 import type { ThemeOptions } from "@mui/material/styles"
 import { User } from "firebase/auth"
-import { PaletteMode } from "@mui/material"
+import { PaletteMode, SelectChangeEvent } from "@mui/material"
 import { Database } from "firebase/database"
 
 export type AppThemeProps = {
@@ -28,20 +28,9 @@ export type StyledIconProps = {
   icon: string
 }
 
-export const AccountIcons: string[] = [
-  "dollar-sign",
-  "file-invoice-dollar",
-  "euro-sign",
-  "hand-holding-usd",
-  "university",
-  "piggy-bank",
-  "money-check-alt",
-  "money-check",
-  "money-bill",
-  "money-bill-alt",
-  "money-bill-wave",
-  "money-bill-wave-alt",
-  "money-check",
-  "money-check-alt",
-  "wallet",
-]
+export type IconSelectProps = {
+  label: string
+  icon: string
+  handleIconChange: (event: SelectChangeEvent) => void
+  icons: string[]
+}

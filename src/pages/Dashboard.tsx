@@ -10,7 +10,7 @@ import SimpleForm from "../components/common/SimpleForm"
 import { StyledIcon } from "../components/common/StyledIcon"
 
 const Dashboard = (props: DashboardProps) => {
-  const icon = "fa-user"
+  const icon = "user"
   return (
     <Container maxWidth="lg">
       <Box>
