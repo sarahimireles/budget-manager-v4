@@ -3,11 +3,7 @@ import {
   Autocomplete,
   Box,
   Button,
-  FormControl,
   FormControlLabel,
-  InputLabel,
-  MenuItem,
-  Select,
   SelectChangeEvent,
   Switch,
   TextField,
@@ -157,22 +153,6 @@ const SimpleForm = () => {
         handleIconChange={handleIconChange}
         icons={AccountIcons}
       />
-      <FormControl fullWidth>
-        <InputLabel id="demo-simple-select-label">Icono</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          value={formValues.icon}
-          label="Icono"
-          onChange={handleIconChange}
-        >
-          {AccountIcons.map((icon) => (
-            <MenuItem key={icon} value={icon}>
-              <StyledIcon icon={icon} />
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Enviar
