@@ -7,6 +7,7 @@ import { DashboardProps } from "../types/common/index"
 import Container from "@mui/material/Container"
 import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
 import SimpleForm from "../components/common/SimpleForm"
+import { StyledIcon } from "../components/common/StyledIcon"
 
 const Dashboard = (props: DashboardProps) => {
   const icon = "fa-user"
@@ -16,10 +17,7 @@ const Dashboard = (props: DashboardProps) => {
         <Paper elevation={0} sx={{ padding: "1rem", marginTop: "1rem" }}>
           <h2 style={{ marginTop: "0" }}>Pantalon para tiendas</h2>
           <p>
-            <span
-              className={`fa-solid ${icon}`}
-              style={{ marginRight: "10px" }}
-            ></span>
+            <StyledIcon icon={icon} />
             Usuario autenticado: {props.user?.email || ""}
           </p>
           <Grid container spacing={3}>
