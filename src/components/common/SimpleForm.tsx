@@ -7,6 +7,7 @@ import {
   SelectChangeEvent,
   Switch,
   TextField,
+  useTheme,
 } from "@mui/material"
 import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
@@ -33,6 +34,7 @@ const autoCompleteOptions = [
 ]
 
 const SimpleForm = () => {
+  const theme = useTheme()
   const [formValues, setFormValues] = useState({
     name: "",
     balance: 0,
@@ -168,7 +170,7 @@ const SimpleForm = () => {
         label="Icono"
         handleIconChange={handleCategoryIconChange}
         icons={IncomeCategoryIcons}
-        selectedColor="#CDFB7C"
+        selectedColor={theme.palette.secondary.main}
         selectedIcon={formValues.incomeCategoryIcon}
         error={formErrors.incomeCategoryError}
       />
