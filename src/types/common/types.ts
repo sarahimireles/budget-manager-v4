@@ -23,3 +23,10 @@ export type AuthContextProps = {
 export type DatabaseContextProps = {
   db: Database
 }
+
+export type AppRoutesType = {
+  path: string
+  element: React.ReactNode
+  itemTxt: string
+  icon: string
+}
