@@ -78,7 +78,7 @@ export const StyledColorPicker = (props: StyledColorPickerProps) => {
                 alignItems: "center",
               }}
             >
-              <StyledIcon icon="calendar" />
+              <StyledIcon icon="eye-dropper" />
             </Box>
           }
         />
