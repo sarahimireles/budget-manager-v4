@@ -43,3 +43,10 @@ export type IconPickerProps = {
   selectedIcon: string
   error: string | undefined
 }
+
+export type StyledColorPickerProps = {
+  label: string
+  color: string
+  handleColorChange: (color: string) => void
+  error: string | undefined
+}
