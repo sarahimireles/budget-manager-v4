@@ -6,21 +6,32 @@ import {
   ListItemText,
   Box,
   Drawer,
-  Divider,
+  useTheme,
 } from "@mui/material"
 import React from "react"
 import { AppRoutes } from "../../utils/common/AppRoutes"
-import { AppRoutesType } from "../../types/common"
+import { AppDrawerProps, AppRoutesType, THEME_MODE } from "../../types/common"
+import { useNavigate } from "react-router-dom"
 
 // @ts-expect-error because for some reason img file is not found
 import logo from "../../assets/images/calculator.png"
 
-type AppDrawerProps = {
-  showDrawer: boolean
-  toggleDrawerDispatch: () => void
-}
-
 const AppDrawer = (props: AppDrawerProps) => {
+  const theme = useTheme()
+  const navigate = useNavigate()
+
+  const handleNavigation = (path: string) => {
+    navigate(path)
+  }
+
+  const drawerBgImage =
+    theme.palette.mode === THEME_MODE.DARK ? "none" : "var(--Paper-overlay)"
+
+  const iconColor =
+    theme.palette.mode === THEME_MODE.DARK
+      ? theme.palette.primary.main
+      : theme.palette.grey[900]
+
   const DrawerList = (
     <Box
       sx={{ width: 250 }}
@@ -28,22 +39,34 @@ const AppDrawer = (props: AppDrawerProps) => {
       onClick={props.toggleDrawerDispatch}
     >
       <List>
-        <ListItem key={"logo001"}>
-          <ListItemIcon>
-            <img src={logo} style={{ maxHeight: "30px" }} />
-          </ListItemIcon>
-          <ListItemText primary="BudManager" />
+        <ListItem key={"logo001"} style={{ marginTop: "1rem" }} disablePadding>
+          <ListItemButton onClick={() => handleNavigation("/")}>
+            <ListItemIcon>
+              <img src={logo} style={{ maxHeight: "30px" }} />
+            </ListItemIcon>
+            <ListItemText
+              primary="BudManager"
+              style={{ fontFamily: "Lora, serif" }}
+              primaryTypographyProps={{
+                fontSize: "1.2rem",
+                fontFamily: "Lora, serif",
+              }}
+            />
+          </ListItemButton>
         </ListItem>
       </List>
-      <Divider />
       <List>
         {AppRoutes.map((route: AppRoutesType, index: number) => (
-          <ListItem key={index + "-" + route.itemTxt}>
-            <ListItemButton>
+          <ListItem
+            key={index + "-" + route.itemTxt}
+            disablePadding
+            style={{ marginTop: "1rem" }}
+          >
+            <ListItemButton onClick={() => handleNavigation(route.path)}>
               <ListItemIcon>
                 <span
                   className={`fa-solid ${route.icon}`}
-                  style={{ marginRight: "10px" }}
+                  style={{ fontSize: "1.1rem", color: iconColor }}
                 ></span>
               </ListItemIcon>
               <ListItemText primary={route.itemTxt} />
@@ -61,8 +84,7 @@ const AppDrawer = (props: AppDrawerProps) => {
         onClose={props.toggleDrawerDispatch}
         PaperProps={{
           sx: {
-            backgroundColor: "#161726",
-            backgroundImage: "none",
+            backgroundImage: drawerBgImage,
           },
         }}
       >

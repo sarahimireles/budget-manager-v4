@@ -30,3 +30,12 @@ export type AppRoutesType = {
   itemTxt: string
   icon: string
 }
+
+export type NavbarProps = {
+  toggleDrawerDispatch: () => void
+}
+
+export type AppDrawerProps = {
+  showDrawer: boolean
+  toggleDrawerDispatch: () => void
+}

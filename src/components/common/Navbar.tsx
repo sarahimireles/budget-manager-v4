@@ -5,14 +5,19 @@ import { auth } from "../../../firebaseConfig"
 import Grid from "@mui/material/Grid2"
 import IconButton from "@mui/material/IconButton"
 import Link from "@mui/material/Link"
+import { useTheme } from "@mui/material"
 import ColorModeSelect from "../../components/shared-theme/ColorModeSelect"
 import StyledAppBar from "./StyledAppBar"
-
-type NavbarProps = {
-  toggleDrawerDispatch: () => void
-}
+import { NavbarProps, THEME_MODE } from "../../types/common"
 
 const Navbar = (props: NavbarProps) => {
+  const theme = useTheme()
+
+  const iconColor =
+    theme.palette.mode === THEME_MODE.DARK
+      ? theme.palette.common.white
+      : theme.palette.common.black
+
   return (
     <StyledAppBar position="static" sx={{ padding: "1rem" }}>
       <Grid container spacing={2}>
@@ -29,9 +34,9 @@ const Navbar = (props: NavbarProps) => {
           <LinkRoute
             className="navbar-link"
             to="/"
-            style={{ textDecoration: "none" }}
+            style={{ textDecoration: "none", color: iconColor }}
           >
-            <span className="brand">BudgetManager</span>
+            <span className="brand">BudManager</span>
           </LinkRoute>
         </Grid>
         <Grid
