@@ -12,4 +12,6 @@ export const AccountIcons: string[] = [
   "money-check",
   "money-check-alt",
   "wallet",
+  "credit-card",
+  "money-bill-trend-up",
 ]
