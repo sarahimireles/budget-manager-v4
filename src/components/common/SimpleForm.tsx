@@ -7,9 +7,11 @@ import {
   SelectChangeEvent,
   Switch,
   TextField,
+  useTheme,
 } from "@mui/material"
-import { AccountIcons } from "../../types/common"
+import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
+import { IconPicker } from "./icon-picker/IconPicker"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -17,6 +19,7 @@ type formError = {
   name?: string
   balance?: string
   autoCompleteOption?: string
+  incomeCategoryError?: string
 }
 
 type autoCompleteOptionType = {
@@ -31,12 +34,14 @@ const autoCompleteOptions = [
 ]
 
 const SimpleForm = () => {
+  const theme = useTheme()
   const [formValues, setFormValues] = useState({
     name: "",
     balance: 0,
     isSum: false,
     autoCompleteOption: { label: "", value: "" },
     icon: AccountIcons[0],
+    incomeCategoryIcon: "",
   })
 
   const [formErrors, setFormErrors] = useState<formError>({
@@ -60,6 +65,8 @@ const SimpleForm = () => {
     if (balance < min) errors.balance = `El valor no puede ser menor que ${min}`
     if (formValues.autoCompleteOption.value === "")
       errors.autoCompleteOption = "Por favor selecciona un país"
+    if (formValues.incomeCategoryIcon === "")
+      errors.incomeCategoryError = "Selecciona un icono"
 
     setFormErrors(errors)
     return Object.keys(errors).length === 0
@@ -90,6 +97,10 @@ const SimpleForm = () => {
     setFormValues((prev) => ({ ...prev, icon: event.target.value as string }))
   }
 
+  const handleCategoryIconChange = (selectedIcon: string) => {
+    setFormValues((prev) => ({ ...prev, incomeCategoryIcon: selectedIcon }))
+    setFormErrors((prev) => ({ ...prev, incomeCategoryError: "" })) // Limpiar errores
+  }
   return (
     <Box
       sx={{
@@ -147,10 +158,21 @@ const SimpleForm = () => {
 
       {/* Select icon */}
       <IconSelect
-        label="Icono"
+        label="Icono de categoria"
         icon={formValues.icon}
         handleIconChange={handleIconChange}
         icons={AccountIcons}
+      />
+
+      {/* Icon picker */}
+      {/* TODO: Como le hago para obtener el color del tema? */}
+      <IconPicker
+        label="Icono"
+        handleIconChange={handleCategoryIconChange}
+        icons={IncomeCategoryIcons}
+        selectedColor={theme.palette.secondary.main}
+        selectedIcon={formValues.incomeCategoryIcon}
+        error={formErrors.incomeCategoryError}
       />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
