@@ -21,7 +21,7 @@ const Navbar = (props: NavbarProps) => {
   return (
     <StyledAppBar position="static" sx={{ padding: "1rem" }}>
       <Grid container spacing={2}>
-        <Grid size={10}>
+        <Grid size={8}>
           <IconButton
             size="large"
             edge="start"
@@ -40,7 +40,7 @@ const Navbar = (props: NavbarProps) => {
           </LinkRoute>
         </Grid>
         <Grid
-          size={1}
+          size={3}
           sx={{ display: "inline-flex", justifyContent: "space-around" }}
         >
           <Link
