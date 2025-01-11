@@ -7,6 +7,7 @@ import {
   Box,
   Drawer,
   useTheme,
+  Divider,
 } from "@mui/material"
 import React from "react"
 import { AppRoutes } from "../../utils/common/AppRoutes"
@@ -74,6 +75,7 @@ const AppDrawer = (props: AppDrawerProps) => {
           </ListItem>
         ))}
       </List>
+      <Divider />
     </Box>
   )
 
