@@ -9,6 +9,8 @@ import { AuthProvider, DatabaseProvider } from "./utils/components"
 import { AppRoutes } from "./utils/common/AppRoutes"
 import Navbar from "./components/common/Navbar"
 import AppDrawer from "./components/common/AppDrawer"
+import { LocalizationProvider } from "@mui/x-date-pickers"
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
 
 const AuthContent = () => {
   const { isAuthenticated, loading } = useAuthContext()
@@ -42,11 +44,13 @@ const App = (props: { disableCustomTheme?: boolean }) => {
   return (
     <AuthProvider>
       <DatabaseProvider>
-        <AppTheme {...props}>
-          <CssBaseline />
+        <LocalizationProvider dateAdapter={AdapterDayjs}>
+          <AppTheme {...props}>
+            <CssBaseline />
 
-          <AuthContent />
-        </AppTheme>
+            <AuthContent />
+          </AppTheme>
+        </LocalizationProvider>
       </DatabaseProvider>
     </AuthProvider>
   )

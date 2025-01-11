@@ -13,6 +13,7 @@ import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
 import { IconPicker } from "./icon-picker/IconPicker"
 import { StyledColorPicker } from "./StyledColorPicker"
+import { DatePicker } from "@mui/x-date-pickers/DatePicker"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -191,6 +192,9 @@ const SimpleForm = () => {
         handleColorChange={handleColorChange}
         error={formErrors.colorError}
       />
+
+      {/* Date picker */}
+      <DatePicker label="Basic date picker" />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Enviar
