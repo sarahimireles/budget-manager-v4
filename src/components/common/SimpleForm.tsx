@@ -12,6 +12,7 @@ import {
 import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
 import { IconPicker } from "./icon-picker/IconPicker"
+import { StyledColorPicker } from "./StyledColorPicker"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -20,6 +21,7 @@ type formError = {
   balance?: string
   autoCompleteOption?: string
   incomeCategoryError?: string
+  colorError?: string
 }
 
 type autoCompleteOptionType = {
@@ -42,6 +44,7 @@ const SimpleForm = () => {
     autoCompleteOption: { label: "", value: "" },
     icon: AccountIcons[0],
     incomeCategoryIcon: "",
+    color: "#fff",
   })
 
   const [formErrors, setFormErrors] = useState<formError>({
@@ -101,6 +104,12 @@ const SimpleForm = () => {
     setFormValues((prev) => ({ ...prev, incomeCategoryIcon: selectedIcon }))
     setFormErrors((prev) => ({ ...prev, incomeCategoryError: "" })) // Limpiar errores
   }
+
+  const handleColorChange = (color: string) => {
+    setFormValues((prev) => ({ ...prev, color }))
+    setFormErrors((prev) => ({ ...prev, colorError: "" })) // Limpiar errores
+  }
+
   return (
     <Box
       sx={{
@@ -173,6 +182,14 @@ const SimpleForm = () => {
         selectedColor={theme.palette.secondary.main}
         selectedIcon={formValues.incomeCategoryIcon}
         error={formErrors.incomeCategoryError}
+      />
+
+      {/* Color picker */}
+      <StyledColorPicker
+        color={formValues.color}
+        label="Mi color"
+        handleColorChange={handleColorChange}
+        error={formErrors.colorError}
       />
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
