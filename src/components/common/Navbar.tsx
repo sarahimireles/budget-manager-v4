@@ -61,12 +61,6 @@ const Navbar = (props: NavbarProps) => {
             <span className="fa-solid fa-door-open"></span>
           </Link>
         </Grid>
-        {/* <Grid
-          size={1}
-          sx={{ display: "inline-flex", justifyContent: "space-around" }}
-        >
-          
-        </Grid> */}
       </Grid>
     </StyledAppBar>
   )
