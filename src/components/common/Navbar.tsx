@@ -21,7 +21,7 @@ const Navbar = (props: NavbarProps) => {
   return (
     <StyledAppBar position="static" sx={{ padding: "1rem" }}>
       <Grid container spacing={2}>
-        <Grid size={8}>
+        <Grid size={10}>
           <IconButton
             size="large"
             edge="start"
@@ -40,29 +40,26 @@ const Navbar = (props: NavbarProps) => {
           </LinkRoute>
         </Grid>
         <Grid
-          size={3}
-          sx={{ display: "inline-flex", justifyContent: "space-around" }}
-        >
-          <Link
-            component="button"
-            color="textPrimary"
-            underline="hover"
-            onClick={() => {
-              signOut(auth)
-            }}
-          >
-            Cerrar sesion
-          </Link>
-        </Grid>
-        <Grid
-          size={1}
+          size={2}
           sx={{
             display: "inline-flex",
             justifyContent: "end",
             alignSelf: "center",
           }}
         >
-          <ColorModeSelect sx={{ height: "2rem" }} />
+          <ColorModeSelect sx={{ height: "2rem", marginRight: "1rem" }} />
+
+          <Link
+            component="button"
+            color="textPrimary"
+            underline="hover"
+            aria-label="Log out"
+            onClick={() => {
+              signOut(auth)
+            }}
+          >
+            <span className="fa-solid fa-door-open"></span>
+          </Link>
         </Grid>
       </Grid>
     </StyledAppBar>
