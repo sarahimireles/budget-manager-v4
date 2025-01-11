@@ -24,6 +24,22 @@ export type DatabaseContextProps = {
   db: Database
 }
 
+export type AppRoutesType = {
+  path: string
+  element: React.ReactNode
+  itemTxt: string
+  icon: string
+}
+
+export type NavbarProps = {
+  toggleDrawerDispatch: () => void
+}
+
+export type AppDrawerProps = {
+  showDrawer: boolean
+  toggleDrawerDispatch: () => void
+}
+
 export type StyledIconProps = {
   icon: string
 }

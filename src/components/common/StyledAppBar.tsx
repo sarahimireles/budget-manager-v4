@@ -6,7 +6,7 @@ const StyledAppBar = styled(AppBar)<AppBarProps>(({ theme }) => ({
   backgroundImage:
     theme.palette.mode === THEME_MODE.DARK
       ? `linear-gradient(${theme.palette.info.dark}, ${theme.palette.background.default})`
-      : `linear-gradient(${theme.palette.info.light}, ${theme.palette.info.light})`,
+      : "var(--Paper-overlay)",
   backgroundColor: theme.palette.background.paper,
   color: theme.palette.getContrastText(theme.palette.background.paper),
 }))

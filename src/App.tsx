@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import "./styles/global.scss"
 import CssBaseline from "@mui/material/CssBaseline"
 import SignIn from "./components/sign-in/SignIn"
@@ -8,9 +8,16 @@ import { useAuthContext } from "./utils/hooks/common/useAuthContext"
 import { AuthProvider, DatabaseProvider } from "./utils/components"
 import { AppRoutes } from "./utils/common/AppRoutes"
 import Navbar from "./components/common/Navbar"
+import AppDrawer from "./components/common/AppDrawer"
 
 const AuthContent = () => {
   const { isAuthenticated, loading } = useAuthContext()
+  const [showDrawer, setShowDrawer] = useState<boolean>(false)
+
+  const toggleDrawer = () => {
+    console.log("entro")
+    setShowDrawer(!showDrawer)
+  }
 
   if (loading) {
     return <div>Cargando...</div>
@@ -18,7 +25,8 @@ const AuthContent = () => {
 
   return isAuthenticated ? (
     <BrowserRouter>
-      <Navbar />
+      <Navbar toggleDrawerDispatch={toggleDrawer} />
+      <AppDrawer showDrawer={showDrawer} toggleDrawerDispatch={toggleDrawer} />
       <Routes>
         {AppRoutes.map((route, index) => (
           <Route key={index} {...route} />
