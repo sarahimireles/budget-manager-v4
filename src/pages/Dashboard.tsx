@@ -5,7 +5,7 @@ import Paper from "@mui/material/Paper"
 import StyledButton from "../components/common/StyledButton"
 import { DashboardProps } from "../types/common/index"
 import Container from "@mui/material/Container"
-import { AccountsWidget } from "../components/accounts-widget/AccountsWidget"
+import { AccountsWidget } from "../components/accounts/AccountsWidget"
 import SimpleForm from "../components/common/SimpleForm"
 import { StyledIcon } from "../components/common/StyledIcon"
 

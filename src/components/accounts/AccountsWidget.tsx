@@ -19,10 +19,7 @@ import {
 } from "../common/StyledAccordion"
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import {
-  AccountGroup,
-  ACCOUNTS_WIDGET_CONSTANTS,
-} from "../../types/accounts-widget"
+import { AccountGroup, ACCOUNTS_WIDGET_CONSTANTS } from "../../types/accounts"
 import StyledButton from "../common/StyledButton"
 import { AddAccount } from "../modals/AddAccount"
 import { AddAccountProps } from "../../types/modals"
