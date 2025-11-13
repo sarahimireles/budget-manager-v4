@@ -8,7 +8,7 @@ export const AddAccount = (props: AddAccountProps) => {
     <Dialog open={props.open} onClose={props.handleClose} maxWidth="lg">
       <DialogTitle>Nueva cuenta</DialogTitle>
       <DialogContent>
-        <AddAccountForm />
+        <AddAccountForm onClose={props.handleClose} />
       </DialogContent>
     </Dialog>
   )

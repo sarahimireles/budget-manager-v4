@@ -34,7 +34,11 @@ type autoCompleteOptionType = {
 
 /* Finish block To move outside */
 
-const AddAccountForm = () => {
+type AddAccountFormProps = {
+  onClose?: () => void
+}
+
+const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
   const [formValues, setFormValues] = useState({
     name: "",
     balance: 0,
@@ -166,13 +170,7 @@ const AddAccountForm = () => {
         }}
       >
         <Grid>
-          <StyledButton
-            variant="outlined"
-            color="secondary"
-            onClick={() => {
-              // Close dialog
-            }}
-          >
+          <StyledButton variant="outlined" color="secondary" onClick={onClose}>
             Cancel
           </StyledButton>
         </Grid>
