@@ -12,31 +12,12 @@ import { IconSelect } from "../common/IconSelect"
 import Grid from "@mui/material/Grid2"
 import { StyledColorPicker } from "../common/StyledColorPicker"
 import StyledButton from "../common/StyledButton"
-
-/* To move outside */
-type formError = {
-  name?: string
-  balance?: string
-  accountType?: string
-  incomeCategoryError?: string
-  colorError?: string
-}
-
-const accountTypeOptions = [
-  { label: "Debito", value: "debit" },
-  { label: "Credito", value: "credit" },
-]
-
-type autoCompleteOptionType = {
-  label: string
-  value: string
-}
-
-/* Finish block To move outside */
-
-type AddAccountFormProps = {
-  onClose?: () => void
-}
+import {
+  ACCOUNT_TYPE_OPTIONS,
+  AddAccountFormProps,
+  AutoCompleteOptionType,
+  FormError,
+} from "../../types/accounts"
 
 const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
   const [formValues, setFormValues] = useState({
@@ -49,7 +30,7 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
     color: "#fff",
   })
 
-  const [formErrors, setFormErrors] = useState<formError>({
+  const [formErrors, setFormErrors] = useState<FormError>({
     name: "",
     balance: "",
     accountType: "",
@@ -63,7 +44,7 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
 
   const handleAccountTypeChange = (
     event: React.SyntheticEvent<Element, Event>,
-    value: autoCompleteOptionType | null
+    value: AutoCompleteOptionType | null
   ) => {
     setFormValues((prev) => ({
       ...prev,
@@ -126,7 +107,7 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
       </Grid>
 
       <Autocomplete
-        options={accountTypeOptions}
+        options={ACCOUNT_TYPE_OPTIONS}
         getOptionLabel={(option) => option.label}
         value={formValues.accountType}
         onChange={handleAccountTypeChange}
