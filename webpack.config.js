@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.tsx',
@@ -42,6 +43,13 @@ module.exports = {
       patterns: [
         { from: 'public/staticwebapp.config.json', to: 'staticwebapp.config.json' }
       ]
+    }),
+    new Dotenv({
+      path: './.env.local', // Load .env.local for local development
+      safe: false, // Don't require .env.example
+      systemvars: true, // Load system environment variables (for CI/CD)
+      silent: false, // Show warnings if .env file is missing
+      defaults: false,
     }),
   ],
   devServer: {

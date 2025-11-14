@@ -5,7 +5,7 @@ import {
   ref,
   set,
 } from "firebase/database"
-import app from "../../../firebaseConfig"
+import app from "../../firebaseConfig"
 import { DatabaseContextProps } from "../../types/common"
 import mockData from "../../../mockData.json"
 
