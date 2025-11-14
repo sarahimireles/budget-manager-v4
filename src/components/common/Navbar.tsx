@@ -1,7 +1,7 @@
 import React from "react"
 import { Link as LinkRoute } from "react-router-dom"
 import { signOut } from "firebase/auth"
-import { auth } from "../../../firebaseConfig"
+import { auth } from "../../firebaseConfig"
 import Grid from "@mui/material/Grid2"
 import IconButton from "@mui/material/IconButton"
 import Link from "@mui/material/Link"
