@@ -1,5 +1,5 @@
 import type { ThemeOptions } from "@mui/material/styles"
-import { User } from "firebase/auth"
+import { User } from "@auth0/auth0-react"
 import { PaletteMode, SelectChangeEvent } from "@mui/material"
 import { Database } from "firebase/database"
 
