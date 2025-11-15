@@ -11,6 +11,8 @@ import Navbar from "./components/common/Navbar"
 import AppDrawer from "./components/common/AppDrawer"
 import { LocalizationProvider } from "@mui/x-date-pickers"
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs"
+import { Auth0Provider } from "@auth0/auth0-react"
+import { auth0Config } from "./auth0Config"
 
 const AuthContent = () => {
   const { isAuthenticated, loading } = useAuthContext()
@@ -42,17 +44,25 @@ const AuthContent = () => {
 
 const App = (props: { disableCustomTheme?: boolean }) => {
   return (
-    <AuthProvider>
-      <DatabaseProvider>
-        <LocalizationProvider dateAdapter={AdapterDayjs}>
-          <AppTheme {...props}>
-            <CssBaseline />
+    <Auth0Provider
+      domain={auth0Config.domain}
+      clientId={auth0Config.clientId}
+      authorizationParams={auth0Config.authorizationParams}
+      cacheLocation={auth0Config.cacheLocation}
+      useRefreshTokens={auth0Config.useRefreshTokens}
+    >
+      <AuthProvider>
+        <DatabaseProvider>
+          <LocalizationProvider dateAdapter={AdapterDayjs}>
+            <AppTheme {...props}>
+              <CssBaseline />
 
-            <AuthContent />
-          </AppTheme>
-        </LocalizationProvider>
-      </DatabaseProvider>
-    </AuthProvider>
+              <AuthContent />
+            </AppTheme>
+          </LocalizationProvider>
+        </DatabaseProvider>
+      </AuthProvider>
+    </Auth0Provider>
   )
 }
 

@@ -1,7 +1,6 @@
 import React from "react"
 import { Link as LinkRoute } from "react-router-dom"
-import { signOut } from "firebase/auth"
-import { auth } from "../../firebaseConfig"
+import { useAuth0 } from "@auth0/auth0-react"
 import Grid from "@mui/material/Grid2"
 import IconButton from "@mui/material/IconButton"
 import Link from "@mui/material/Link"
@@ -12,6 +11,7 @@ import { NavbarProps, THEME_MODE } from "../../types/common"
 
 const Navbar = (props: NavbarProps) => {
   const theme = useTheme()
+  const { logout } = useAuth0()
 
   const iconColor =
     theme.palette.mode === THEME_MODE.DARK
@@ -55,7 +55,7 @@ const Navbar = (props: NavbarProps) => {
             underline="hover"
             aria-label="Log out"
             onClick={() => {
-              signOut(auth)
+              logout({ logoutParams: { returnTo: window.location.origin } })
             }}
           >
             <span className="fa-solid fa-door-open"></span>
