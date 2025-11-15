@@ -1,6 +1,5 @@
-import React, { createContext, useState, useEffect, ReactNode } from "react"
-import { onAuthStateChanged, User } from "firebase/auth"
-import { auth } from "../../firebaseConfig"
+import React, { createContext, ReactNode } from "react"
+import { useAuth0 } from "@auth0/auth0-react"
 import { AuthContextProps } from "../../types/common"
 
 export const AuthContext = createContext<AuthContextProps | undefined>(
@@ -8,22 +7,16 @@ export const AuthContext = createContext<AuthContextProps | undefined>(
 )
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-  const [user, setUser] = useState<User | null>(null)
-  const [isAuthenticated, setIsAuthenticated] = useState(false)
-  const [loading, setLoading] = useState(true)
-
-  // Manejar autenticación de usuario
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      setUser(user)
-      setIsAuthenticated(!!user)
-      setLoading(false)
-    })
-    return () => unsubscribe()
-  }, [])
+  const { user, isAuthenticated, isLoading } = useAuth0()
 
   return (
-    <AuthContext.Provider value={{ user, isAuthenticated, loading }}>
+    <AuthContext.Provider
+      value={{
+        user: user || null,
+        isAuthenticated,
+        loading: isLoading,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   )
