@@ -1,84 +1,27 @@
 import React from "react"
-import Box from "@mui/material/Box"
-import Button from "@mui/material/Button"
-import Typography from "@mui/material/Typography"
-import Stack from "@mui/material/Stack"
-import MuiCard from "@mui/material/Card"
-import { styled } from "@mui/material/styles"
 import { useAuth0 } from "@auth0/auth0-react"
 import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
-
-// TODO: Move Card to a separate file
-const Card = styled(MuiCard)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignSelf: "center",
-  width: "100%",
-  padding: theme.spacing(4),
-  gap: theme.spacing(2),
-  margin: "auto",
-  [theme.breakpoints.up("sm")]: {
-    maxWidth: "450px",
-  },
-  boxShadow:
-    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
-  ...theme.applyStyles("dark", {
-    boxShadow:
-      "hsla(220, 30%, 5%, 0.5) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.08) 0px 15px 35px -5px",
-  }),
-}))
-
-const SignInContainer = styled(Stack)(({ theme }) => ({
-  height: "calc((1 - var(--template-frame-height, 0)) * 100dvh)",
-  minHeight: "100%",
-  padding: theme.spacing(2),
-  [theme.breakpoints.up("sm")]: {
-    padding: theme.spacing(4),
-  },
-  "&::before": {
-    // eslint-disable-next-line quotes
-    content: '""',
-    display: "block",
-    position: "absolute",
-    zIndex: -1,
-    inset: 0,
-    backgroundImage:
-      "radial-gradient(ellipse at 50% 50%, hsl(210, 100%, 97%), hsl(0, 0%, 100%))",
-    backgroundRepeat: "no-repeat",
-    ...theme.applyStyles("dark", {
-      backgroundImage:
-        "radial-gradient(at 50% 50%, hsla(210, 100%, 16%, 0.5), hsl(220, 30%, 5%))",
-    }),
-  },
-}))
+import Button from "../common/Button"
+import { Card } from "../common/Card"
+import Box from "../common/Box"
 
 export default function SignIn() {
   const { loginWithRedirect, isLoading } = useAuth0()
 
   return (
-    <SignInContainer direction="column" justifyContent="space-between">
-      <Card variant="outlined">
-        <Typography
-          component="h1"
-          variant="h4"
-          sx={{
-            width: "100%",
-            fontSize: "clamp(2rem, 10vw, 2.15rem)",
-            textAlign: "center",
-            mb: 2,
-          }}
-        >
+    <div className="min-h-[100dvh] flex flex-col justify-center items-center p-4 sm:p-8 relative overflow-hidden">
+      {/* Background with radial gradient */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_at_50%_50%,hsl(210,100%,97%),hsl(0,0%,100%))] dark:bg-[radial-gradient(at_50%_50%,hsla(210,100%,16%,0.5),hsl(220,30%,5%))]" />
+
+      <Card
+        variant="outlined"
+        className="w-full max-w-[450px] p-8 flex flex-col gap-6 shadow-card dark:shadow-card-dark"
+      >
+        <h1 className="text-4xl font-bold text-center text-gray-900 dark:text-gray-100 mb-2 font-brand">
           Budget Manager
-        </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            width: "100%",
-            gap: 2,
-            alignItems: "center",
-          }}
-        >
+        </h1>
+
+        <Box className="flex flex-col w-full gap-4 items-center">
           <Button
             fullWidth
             variant="contained"
@@ -90,6 +33,6 @@ export default function SignIn() {
           </Button>
         </Box>
       </Card>
-    </SignInContainer>
+    </div>
   )
 }

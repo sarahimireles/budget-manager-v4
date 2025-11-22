@@ -1,26 +1,17 @@
-import {
-  AccordionDetails,
-  Card,
-  CardContent,
-  CardHeader,
-  List,
-  ListItem,
-  ListItemText,
-  Typography,
-} from "@mui/material"
 import React, { useState, useEffect } from "react"
 import { AccountsService } from "../../services"
 import { useDatabaseContext, useAuthContext } from "../../utils/hooks/common"
 import { formatCurrency } from "../../utils/functions"
-import Grid from "@mui/material/Grid2"
 import {
-  StyledAccordion,
-  StyledAccordionSummary,
-} from "../common/StyledAccordion"
+  Accordion,
+  AccordionSummary,
+  AccordionDetails,
+} from "../common/Accordion"
+import { Card, CardHeader, CardContent } from "../common/Card"
+import Button from "../common/Button"
 import { faPlus } from "@fortawesome/free-solid-svg-icons/faPlus"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
 import { AccountGroup, ACCOUNTS_WIDGET_CONSTANTS } from "../../types/accounts"
-import StyledButton from "../common/StyledButton"
 import { AddAccount } from "../modals/AddAccount"
 import { AddAccountProps } from "../../types/modals"
 
@@ -59,10 +50,10 @@ export const AccountsWidget = () => {
       <AddAccount {...addAccountProps} />
       <Card>
         <CardHeader
-          sx={{ paddingBottom: "1.5rem" }}
+          className="pb-6"
           title={ACCOUNTS_WIDGET_CONSTANTS.TITLE}
           action={
-            <StyledButton
+            <Button
               variant="text"
               size="small"
               color="primary"
@@ -70,46 +61,53 @@ export const AccountsWidget = () => {
               startIcon={<FontAwesomeIcon icon={faPlus} />}
             >
               {ACCOUNTS_WIDGET_CONSTANTS.ADD_ACCOUNT_TEXT}
-            </StyledButton>
+            </Button>
           }
         />
-        <CardContent sx={{ p: 0, "&:last-child": { paddingBottom: 0 } }}>
+        <CardContent className="p-0 pb-0 last:pb-0">
           {accounts != undefined && accounts.length > 0 ? (
             accounts?.map((group) => (
-              <StyledAccordion key={group.name}>
-                <StyledAccordionSummary
+              <Accordion key={group.name}>
+                <AccordionSummary
                   aria-controls="panel1-content"
                   id="panel1-header"
                 >
-                  <Grid container spacing={3} sx={{ width: "100%" }}>
-                    <Grid size={9}>
-                      <Typography>{group.name}</Typography>
-                    </Grid>
-                    <Grid size={3} sx={{ textAlign: "right" }}>
-                      <Typography>
+                  <div className="flex w-full justify-between items-center">
+                    <div className="w-3/4">
+                      <p className="text-gray-900 dark:text-gray-100 font-medium">
+                        {group.name}
+                      </p>
+                    </div>
+                    <div className="w-1/4 text-right">
+                      <p className="text-gray-900 dark:text-gray-100 font-medium">
                         {formatCurrency(group.totalBalance)}
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </StyledAccordionSummary>
+                      </p>
+                    </div>
+                  </div>
+                </AccordionSummary>
                 <AccordionDetails>
-                  <List>
+                  <ul className="list-none p-0 m-0">
                     {group.items?.map((account) => (
-                      <ListItem key={account.key}>
-                        <ListItemText primary={account.name} />
-                        <Typography sx={{ textAlign: "right" }}>
+                      <li
+                        key={account.key}
+                        className="flex justify-between items-center py-2 px-4 border-b border-gray-100 dark:border-gray-800 last:border-0"
+                      >
+                        <span className="text-gray-700 dark:text-gray-300">
+                          {account.name}
+                        </span>
+                        <span className="text-gray-900 dark:text-gray-100 font-medium">
                           {formatCurrency(account.currentBalance)}
-                        </Typography>
-                      </ListItem>
+                        </span>
+                      </li>
                     ))}
-                  </List>
+                  </ul>
                 </AccordionDetails>
-              </StyledAccordion>
+              </Accordion>
             ))
           ) : (
-            <Typography sx={{ pl: 2, pr: 2, pb: 2 }}>
+            <p className="px-4 pb-4 text-gray-500 dark:text-gray-400">
               No hay cuentas registradas
-            </Typography>
+            </p>
           )}
         </CardContent>
       </Card>

@@ -1,19 +1,15 @@
 import React, { useState } from "react"
-import {
-  Autocomplete,
-  Box,
-  Button,
-  FormControlLabel,
-  SelectChangeEvent,
-  Switch,
-  TextField,
-  useTheme,
-} from "@mui/material"
+import { SelectChangeEvent } from "../../types/common"
 import { AccountIcons, IncomeCategoryIcons } from "../../types/common"
 import { IconSelect } from "./IconSelect"
 import { IconPicker } from "./icon-picker/IconPicker"
 import { StyledColorPicker } from "./StyledColorPicker"
 import { DatePicker } from "@mui/x-date-pickers/DatePicker"
+import Box from "./Box"
+import TextField from "./TextField"
+import Button from "./Button"
+import Switch, { FormControlLabel } from "./Switch"
+import Autocomplete from "./Autocomplete"
 
 // TODO: Este control se va a eliminar, solo es para ver como se hace un formulario simple
 
@@ -37,7 +33,6 @@ const autoCompleteOptions = [
 ]
 
 const SimpleForm = () => {
-  const theme = useTheme()
   const [formValues, setFormValues] = useState({
     name: "",
     balance: 0,
@@ -98,7 +93,9 @@ const SimpleForm = () => {
   }
 
   const handleIconChange = (event: SelectChangeEvent) => {
-    setFormValues((prev) => ({ ...prev, icon: event.target.value as string }))
+    // Adapted for new Select component which passes value directly or event
+    const value = event.target.value
+    setFormValues((prev) => ({ ...prev, icon: value }))
   }
 
   const handleCategoryIconChange = (selectedIcon: string) => {
@@ -112,18 +109,11 @@ const SimpleForm = () => {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-      }}
-    >
+    <Box className="flex flex-col gap-4">
       {/* TextField */}
       <TextField
         label="Nombre"
         name="name"
-        variant="outlined"
         value={formValues.name}
         onChange={handleChange}
         error={!!formErrors.name}
@@ -134,7 +124,6 @@ const SimpleForm = () => {
       <TextField
         label="Edad"
         name="balance"
-        variant="outlined"
         value={formValues.balance}
         onChange={handleChange}
         error={!!formErrors.balance}
@@ -175,12 +164,11 @@ const SimpleForm = () => {
       />
 
       {/* Icon picker */}
-      {/* TODO: Como le hago para obtener el color del tema? */}
       <IconPicker
         label="Icono"
         handleIconChange={handleCategoryIconChange}
         icons={IncomeCategoryIcons}
-        selectedColor={theme.palette.secondary.main}
+        selectedColor="hsl(210, 98%, 42%)" // Hardcoded primary color for now
         selectedIcon={formValues.incomeCategoryIcon}
         error={formErrors.incomeCategoryError}
       />
@@ -193,8 +181,10 @@ const SimpleForm = () => {
         error={formErrors.colorError}
       />
 
-      {/* Date picker */}
-      <DatePicker label="Basic date picker" />
+      {/* Date picker - Keeping MUI for now but wrapped */}
+      <div className="w-full">
+        <DatePicker label="Basic date picker" className="w-full" />
+      </div>
 
       <Button variant="contained" color="primary" onClick={handleSubmit}>
         Enviar
