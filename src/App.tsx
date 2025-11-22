@@ -1,8 +1,7 @@
 import React, { useState } from "react"
 import "./styles/global.scss"
-import CssBaseline from "@mui/material/CssBaseline"
 import SignIn from "./components/sign-in/SignIn"
-import AppTheme from "./components/shared-theme/AppTheme"
+import { ThemeProvider } from "./contexts/ThemeContext"
 import { Route, BrowserRouter, Routes } from "react-router-dom"
 import { useAuthContext } from "./utils/hooks/common/useAuthContext"
 import { AuthProvider, DatabaseProvider } from "./utils/components"
@@ -42,7 +41,7 @@ const AuthContent = () => {
   )
 }
 
-const App = (props: { disableCustomTheme?: boolean }) => {
+const App = () => {
   return (
     <Auth0Provider
       domain={auth0Config.domain}
@@ -54,11 +53,9 @@ const App = (props: { disableCustomTheme?: boolean }) => {
       <AuthProvider>
         <DatabaseProvider>
           <LocalizationProvider dateAdapter={AdapterDayjs}>
-            <AppTheme {...props}>
-              <CssBaseline />
-
+            <ThemeProvider>
               <AuthContent />
-            </AppTheme>
+            </ThemeProvider>
           </LocalizationProvider>
         </DatabaseProvider>
       </AuthProvider>
