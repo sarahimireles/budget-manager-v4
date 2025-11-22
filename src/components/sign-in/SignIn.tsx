@@ -1,22 +1,12 @@
-import React, { FormEvent, useState } from "react"
+import React from "react"
 import Box from "@mui/material/Box"
 import Button from "@mui/material/Button"
-import FormLabel from "@mui/material/FormLabel"
-import FormControl from "@mui/material/FormControl"
-import Link from "@mui/material/Link"
-import TextField from "@mui/material/TextField"
 import Typography from "@mui/material/Typography"
 import Stack from "@mui/material/Stack"
 import MuiCard from "@mui/material/Card"
 import { styled } from "@mui/material/styles"
-import ForgotPassword from "./ForgotPassword"
-import CustomSnackbar from "../common/CustomSnackbar"
-import { useSnackbar } from "../../utils/hooks/snackbar/useSnackbar"
-import { signInWithEmailAndPassword } from "firebase/auth"
-import { auth } from "../../firebaseConfig"
-import { isValidEmail } from "../../utils/functions"
+import { useAuth0 } from "@auth0/auth0-react"
 import { SIGN_IN_CONSTANTS } from "../../types/sign-in"
-import { Severity } from "../../types/snackbar"
 
 // TODO: Move Card to a separate file
 const Card = styled(MuiCard)(({ theme }) => ({
@@ -63,150 +53,43 @@ const SignInContainer = styled(Stack)(({ theme }) => ({
 }))
 
 export default function SignIn() {
-  const [emailError, setEmailError] = useState(false)
-  const [emailErrorMessage, setEmailErrorMessage] = useState("")
-  const [passwordError, setPasswordError] = useState(false)
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("")
-  const [open, setOpen] = useState(false)
-  const { snackbar, showSnackbar, closeSnackbar } = useSnackbar()
-
-  const toggleOpenSnackBar = () => {
-    setOpen(!open)
-  }
-
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault()
-
-    const email = (document.getElementById("email") as HTMLInputElement).value
-    const password = (document.getElementById("password") as HTMLInputElement)
-      .value
-
-    try {
-      await signInWithEmailAndPassword(auth, email, password)
-    } catch (error: unknown) {
-      console.error("Error en el sign-in:", error)
-
-      showSnackbar(SIGN_IN_CONSTANTS.GENERAL_ERROR, Severity.ERROR)
-    }
-  }
-
-  const validateInputs = (event: React.MouseEvent<HTMLButtonElement>) => {
-    const email = document.getElementById("email") as HTMLInputElement
-    const password = document.getElementById("password") as HTMLInputElement
-
-    let formHasErrors = true
-
-    if (!email.value || !isValidEmail(email.value)) {
-      setEmailError(true)
-      setEmailErrorMessage(SIGN_IN_CONSTANTS.INVALID_EMAIL)
-      formHasErrors = false
-    } else {
-      setEmailError(false)
-      setEmailErrorMessage("")
-    }
-
-    if (!password.value || password.value.length < 1) {
-      setPasswordError(true)
-      setPasswordErrorMessage(SIGN_IN_CONSTANTS.PASSWORD_TOO_SHORT)
-      formHasErrors = false
-    } else {
-      setPasswordError(false)
-      setPasswordErrorMessage("")
-    }
-
-    if (!formHasErrors) {
-      event.preventDefault()
-    }
-
-    return formHasErrors
-  }
+  const { loginWithRedirect, isLoading } = useAuth0()
 
   return (
-    <>
-      <CustomSnackbar
-        open={snackbar.open}
-        message={snackbar.message}
-        severity={snackbar.severity}
-        onClose={closeSnackbar}
-      />
-      <SignInContainer direction="column" justifyContent="space-between">
-        <Card variant="outlined">
-          <Typography
-            component="h1"
-            variant="h4"
-            sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
+    <SignInContainer direction="column" justifyContent="space-between">
+      <Card variant="outlined">
+        <Typography
+          component="h1"
+          variant="h4"
+          sx={{
+            width: "100%",
+            fontSize: "clamp(2rem, 10vw, 2.15rem)",
+            textAlign: "center",
+            mb: 2,
+          }}
+        >
+          Budget Manager
+        </Typography>
+        <Box
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            width: "100%",
+            gap: 2,
+            alignItems: "center",
+          }}
+        >
+          <Button
+            fullWidth
+            variant="contained"
+            size="large"
+            onClick={() => loginWithRedirect()}
+            disabled={isLoading}
           >
-            {SIGN_IN_CONSTANTS.LOGIN_SUBMIT}
-          </Typography>
-          <Box
-            component="form"
-            onSubmit={handleSubmit}
-            noValidate
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              width: "100%",
-              gap: 2,
-            }}
-          >
-            <FormControl>
-              <FormLabel htmlFor="email">
-                {SIGN_IN_CONSTANTS.EMAIL_LABEL}
-              </FormLabel>
-              <TextField
-                error={emailError}
-                helperText={emailErrorMessage}
-                id="email"
-                type="email"
-                name="email"
-                placeholder={SIGN_IN_CONSTANTS.EMAIL_PLACEHOLDER}
-                autoComplete="email"
-                autoFocus
-                required
-                fullWidth
-                variant="outlined"
-                color={emailError ? "error" : "primary"}
-              />
-            </FormControl>
-            <FormControl>
-              <FormLabel htmlFor="password">
-                {SIGN_IN_CONSTANTS.PASSWORD_LABEL}
-              </FormLabel>
-              <TextField
-                error={passwordError}
-                helperText={passwordErrorMessage}
-                name="password"
-                placeholder={SIGN_IN_CONSTANTS.PASSWORD_PLACEHOLDER}
-                type="password"
-                id="password"
-                autoComplete="current-password"
-                required
-                fullWidth
-                variant="outlined"
-                color={passwordError ? "error" : "primary"}
-              />
-            </FormControl>
-            <ForgotPassword open={open} handleClose={toggleOpenSnackBar} />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              onClick={validateInputs}
-            >
-              {SIGN_IN_CONSTANTS.LOGIN_SUBMIT}
-            </Button>
-            <Link
-              component="button"
-              type="button"
-              onClick={toggleOpenSnackBar}
-              variant="body2"
-              sx={{ alignSelf: "center" }}
-            >
-              {SIGN_IN_CONSTANTS.FORGOT_PASSWORD_LINK}
-            </Link>
-          </Box>
-        </Card>
-      </SignInContainer>
-    </>
+            {isLoading ? "Cargando..." : SIGN_IN_CONSTANTS.LOGIN_SUBMIT}
+          </Button>
+        </Box>
+      </Card>
+    </SignInContainer>
   )
 }
