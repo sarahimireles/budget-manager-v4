@@ -1,4 +1,3 @@
-import { FormControl, InputLabel, Input, Box } from "@mui/material"
 import React, { useEffect, useRef, useState } from "react"
 import { StyledIcon } from "./StyledIcon"
 import { HexColorPicker } from "react-colorful"
@@ -7,18 +6,20 @@ import { StyledColorPickerProps } from "../../types/common/types"
 export const StyledColorPicker = (props: StyledColorPickerProps) => {
   const [color, setColor] = useState(props.color)
   const [showPicker, setShowPicker] = useState(false)
-  const pickerRef = useRef<HTMLDivElement | null>(null) // Referencia al color picker
-  const inputRef = useRef<HTMLDivElement | null>(null) // Referencia al contenedor del input
+  const pickerRef = useRef<HTMLDivElement | null>(null)
+  const containerRef = useRef<HTMLDivElement | null>(null)
 
   const onColorChanged = (color: string) => {
     setColor(color)
     props.handleColorChange(color)
   }
-  // Cierra el picker si se hace clic fuera
+
   const handleClickOutside = (event: MouseEvent) => {
     if (
       pickerRef.current &&
-      !pickerRef.current.contains(event.target as Node)
+      !pickerRef.current.contains(event.target as Node) &&
+      containerRef.current &&
+      !containerRef.current.contains(event.target as Node)
     ) {
       setShowPicker(false)
     }
@@ -35,54 +36,43 @@ export const StyledColorPicker = (props: StyledColorPickerProps) => {
     }
   }, [showPicker])
 
-  const togglePicker = () => {
-    setShowPicker(!showPicker) // Alternar entre mostrar y ocultar el picker
-  }
-
   return (
-    <Box position="relative" ref={inputRef} sx={{ width: "100%" }}>
-      {/* Color Picker */}
+    <div className="relative w-full" ref={containerRef}>
+      <label className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-1 block">
+        {props.label}
+      </label>
+      <div className="relative">
+        <div className="flex items-center w-full px-3 py-2 rounded border border-gray-600 bg-background-paper text-gray-100">
+          <div
+            className="w-6 h-6 rounded border border-gray-500 mr-3"
+            style={{ backgroundColor: color }}
+          />
+          <input
+            type="text"
+            value={color}
+            readOnly
+            className="bg-transparent border-none focus:outline-none flex-grow text-gray-900 dark:text-gray-100"
+          />
+          <button
+            type="button"
+            onClick={() => setShowPicker(!showPicker)}
+            className="p-1 hover:bg-gray-700 rounded transition-colors"
+          >
+            <StyledIcon icon="eye-dropper" />
+          </button>
+        </div>
+      </div>
+
       {showPicker && (
-        <Box
-          ref={pickerRef} // Referencia al picker
-          sx={{
-            position: "absolute", // Flotante
-            zIndex: 2,
-            bottom: "100%", // Posiciona el picker arriba del input
-            left: 0,
-            backgroundColor: "white", // Fondo blanco para el picker
-            boxShadow: "0px 4px 6px rgba(0,0,0,0.1)", // Sombra flotante
-            borderRadius: "8px", // Borde redondeado
-            padding: "8px", // Espaciado interno opcional
-            marginBottom: "8px", // Espaciado entre el picker y el input
-          }}
+        <div
+          ref={pickerRef}
+          className="absolute z-10 bottom-full left-0 mb-2 bg-white p-2 rounded-lg shadow-xl border border-gray-200"
         >
           <HexColorPicker color={color} onChange={onColorChanged} />
-        </Box>
+        </div>
       )}
 
-      {/* Input */}
-      <FormControl variant="standard" error={!!props.error} fullWidth>
-        <InputLabel htmlFor="color-picker-input">{props.label}</InputLabel>
-        <Input
-          id="color-picker-input"
-          type="text"
-          value={color}
-          readOnly
-          endAdornment={
-            <Box
-              onClick={togglePicker} // Controla la visibilidad del picker
-              sx={{
-                cursor: "pointer",
-                display: "flex",
-                alignItems: "center",
-              }}
-            >
-              <StyledIcon icon="eye-dropper" />
-            </Box>
-          }
-        />
-      </FormControl>
-    </Box>
+      {props.error && <p className="text-xs text-error mt-1">{props.error}</p>}
+    </div>
   )
 }

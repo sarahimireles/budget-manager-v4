@@ -1,68 +1,48 @@
 import React from "react"
 import { Link as LinkRoute } from "react-router-dom"
 import { useAuth0 } from "@auth0/auth0-react"
-import Grid from "@mui/material/Grid2"
-import IconButton from "@mui/material/IconButton"
-import Link from "@mui/material/Link"
-import { useTheme } from "@mui/material"
-import ColorModeSelect from "../../components/shared-theme/ColorModeSelect"
-import StyledAppBar from "./StyledAppBar"
-import { NavbarProps, THEME_MODE } from "../../types/common"
+import ColorModeIconDropdown from "../../components/shared-theme/ColorModeIconDropdown"
+import AppBar from "./AppBar"
+import { NavbarProps } from "../../types/common"
 
 const Navbar = (props: NavbarProps) => {
-  const theme = useTheme()
   const { logout } = useAuth0()
 
-  const iconColor =
-    theme.palette.mode === THEME_MODE.DARK
-      ? theme.palette.common.white
-      : theme.palette.common.black
-
   return (
-    <StyledAppBar position="static" sx={{ padding: "1rem" }}>
-      <Grid container spacing={2}>
-        <Grid size={10}>
-          <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
+    <AppBar position="static" className="p-4">
+      <div className="flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <button
+            className="p-2 rounded-full hover:bg-white/10 transition-colors text-gray-100"
             onClick={props.toggleDrawerDispatch}
+            aria-label="menu"
           >
-            <span className="fa-solid fa-bars"></span>
-          </IconButton>
+            <span className="fa-solid fa-bars text-xl"></span>
+          </button>
           <LinkRoute
-            className="navbar-link"
+            className="navbar-link no-underline text-gray-900 dark:text-gray-100"
             to="/"
-            style={{ textDecoration: "none", color: iconColor }}
           >
-            <span className="brand">BudManager</span>
+            <span className="brand text-xl font-brand font-bold">
+              BudManager
+            </span>
           </LinkRoute>
-        </Grid>
-        <Grid
-          size={2}
-          sx={{
-            display: "inline-flex",
-            justifyContent: "end",
-            alignSelf: "center",
-          }}
-        >
-          <ColorModeSelect sx={{ height: "2rem", marginRight: "1rem" }} />
+        </div>
+        <div className="flex items-center gap-4">
+          <ColorModeIconDropdown />
 
-          <Link
-            component="button"
-            color="textPrimary"
-            underline="hover"
+          <button
+            className="text-gray-900 dark:text-gray-100 hover:underline flex items-center"
             aria-label="Log out"
             onClick={() => {
               logout({ logoutParams: { returnTo: window.location.origin } })
             }}
           >
-            <span className="fa-solid fa-door-open"></span>
-          </Link>
-        </Grid>
-      </Grid>
-    </StyledAppBar>
+            <span className="fa-solid fa-door-open text-xl"></span>
+          </button>
+        </div>
+      </div>
+    </AppBar>
   )
 }
 

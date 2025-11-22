@@ -1,17 +1,12 @@
 import React, { useState } from "react"
 import { AccountIcons } from "../../types/common"
-import {
-  Autocomplete,
-  Box,
-  FormControlLabel,
-  SelectChangeEvent,
-  Switch,
-  TextField,
-} from "@mui/material"
 import { IconSelect } from "../common/IconSelect"
-import Grid from "@mui/material/Grid2"
 import { StyledColorPicker } from "../common/StyledColorPicker"
-import StyledButton from "../common/StyledButton"
+import Button from "../common/Button"
+import Box from "../common/Box"
+import TextField from "../common/TextField"
+import Autocomplete from "../common/Autocomplete"
+import Switch, { FormControlLabel } from "../common/Switch"
 import {
   ACCOUNT_TYPE_OPTIONS,
   AddAccountFormProps,
@@ -36,10 +31,14 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
     accountType: "",
   })
 
-  const handleChange = () => {}
+  const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = event.target
+    setFormValues((prev) => ({ ...prev, [name]: value }))
+  }
 
-  const handleIconChange = (event: SelectChangeEvent) => {
-    setFormValues((prev) => ({ ...prev, icon: event.target.value as string }))
+  const handleIconChange = (event: { target: { value: string } }) => {
+    const value = event.target.value
+    setFormValues((prev) => ({ ...prev, icon: value }))
   }
 
   const handleAccountTypeChange = (
@@ -63,48 +62,38 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
   }
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        gap: 2,
-        width: "30vw",
-        paddingTop: "0.5rem",
-      }}
-    >
+    <Box className="flex flex-col gap-4 w-full md:w-[600px] pt-2">
       <TextField
         label="Nombre"
         name="name"
-        variant="outlined"
         value={formValues.name}
         onChange={handleChange}
         error={!!formErrors.name}
         helperText={formErrors.name}
       />
 
-      <Grid container spacing={3}>
-        <Grid size={8}>
+      <div className="grid grid-cols-12 gap-4">
+        <div className="col-span-8">
           <TextField
             label="Balance actual"
             name="balance"
-            variant="outlined"
             value={formValues.balance}
             onChange={handleChange}
             error={!!formErrors.balance}
             helperText={formErrors.balance}
             type="number"
-            sx={{ width: "100%" }}
+            className="w-full"
           />
-        </Grid>
-        <Grid size={4}>
+        </div>
+        <div className="col-span-4">
           <IconSelect
             label="Icono de categoria"
             icon={formValues.icon}
             handleIconChange={handleIconChange}
             icons={AccountIcons}
           />
-        </Grid>
-      </Grid>
+        </div>
+      </div>
 
       <Autocomplete
         options={ACCOUNT_TYPE_OPTIONS}
@@ -123,51 +112,40 @@ const AddAccountForm = ({ onClose }: AddAccountFormProps) => {
         isOptionEqualToValue={(option, value) => option.value === value?.value}
       />
 
-      <Grid container spacing={3}>
-        <Grid size={8}>
+      <div className="grid grid-cols-12 gap-4 items-center">
+        <div className="col-span-8">
           <FormControlLabel
             control={
               <Switch checked={formValues.isSum} onChange={handleIsSumToggle} />
             }
             label="Se suma al presupuesto"
           />
-        </Grid>
-        <Grid size={4}>
+        </div>
+        <div className="col-span-4">
           <StyledColorPicker
             color={formValues.color}
             label="Color de cuenta"
             handleColorChange={handleColorChange}
             error={formErrors.colorError}
           />
-        </Grid>
-      </Grid>
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          marginTop: "2rem",
-          justifyContent: "flex-end",
-          gap: "2rem",
-        }}
-      >
-        <Grid>
-          <StyledButton variant="outlined" color="secondary" onClick={onClose}>
-            Cancel
-          </StyledButton>
-        </Grid>
-        <Grid>
-          <StyledButton
-            variant="contained"
-            color="primary"
-            onClick={() => {
-              // TODO: Implement save functionality
-              console.log("Save clicked", formValues)
-            }}
-          >
-            Save
-          </StyledButton>
-        </Grid>
-      </Grid>
+        </div>
+      </div>
+
+      <div className="flex justify-end gap-4 mt-8">
+        <Button variant="outlined" color="secondary" onClick={onClose}>
+          Cancel
+        </Button>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={() => {
+            // TODO: Implement save functionality
+            console.log("Save clicked", formValues)
+          }}
+        >
+          Save
+        </Button>
+      </div>
     </Box>
   )
 }

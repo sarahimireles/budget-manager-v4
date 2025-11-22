@@ -24,11 +24,11 @@ module.exports = {
       },
       {
         test: /\.css$/, // Rule for CSS files
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.scss$/, // Rule for SCSS files
-        use: ['style-loader', 'css-loader', 'sass-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpe?g|gif|svg)$/i, // Match image file extensions

@@ -1,13 +1,13 @@
-import type { ThemeOptions } from "@mui/material/styles"
 import { User } from "@auth0/auth0-react"
-import { PaletteMode, SelectChangeEvent } from "@mui/material"
 import { Database } from "firebase/database"
+
+// Removed MUI imports
 
 export type AppThemeProps = {
   children: React.ReactNode
   disableCustomTheme?: boolean
-  themeComponents?: ThemeOptions["components"]
-  themeMode?: PaletteMode
+  themeComponents?: Record<string, unknown> // Was ThemeOptions["components"]
+  themeMode?: "light" | "dark" // Was PaletteMode
 }
 
 export type DashboardProps = {
@@ -42,6 +42,13 @@ export type AppDrawerProps = {
 
 export type StyledIconProps = {
   icon: string
+}
+
+// Custom event type to replace SelectChangeEvent
+export type SelectChangeEvent = {
+  target: {
+    value: string
+  }
 }
 
 export type IconSelectProps = {

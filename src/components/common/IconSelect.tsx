@@ -1,23 +1,28 @@
-import { FormControl, InputLabel, Select, MenuItem } from "@mui/material"
 import React from "react"
 import { StyledIcon } from "./StyledIcon"
 import { IconSelectProps } from "../../types/common"
+import Select from "./Select"
 
 export const IconSelect = (props: IconSelectProps) => {
+  const options = props.icons.map((icon) => ({
+    label: icon,
+    value: icon,
+  }))
+
   return (
-    <FormControl fullWidth>
-      <InputLabel>{props.label}</InputLabel>
-      <Select
-        value={props.icon}
-        label={props.label}
-        onChange={props.handleIconChange}
-      >
-        {props.icons.map((icon) => (
-          <MenuItem key={icon} value={icon}>
-            <StyledIcon icon={icon} />
-          </MenuItem>
-        ))}
-      </Select>
-    </FormControl>
+    <Select
+      label={props.label}
+      value={props.icon}
+      onChange={(value) =>
+        props.handleIconChange({ target: { value: value as string } })
+      }
+      options={options}
+      renderOption={(option) => (
+        <div className="flex items-center gap-2">
+          <StyledIcon icon={option.value as string} />
+          <span>{option.label}</span>
+        </div>
+      )}
+    />
   )
 }
